@@ -1,8 +1,9 @@
+import Register from '../components/Register';
+
 const RegisterPage = () => {
   return (
     <div>
-      <h1>Registrarse</h1>
-      {/* Aquí irá el formulario de registro */}
+      <Register />
     </div>
   );
 };
