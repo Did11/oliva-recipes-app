@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
+import './styles/Navbar.css';  // Asegúrate de importar el archivo CSS
 
 const Navbar = () => {
   const { state, dispatch } = useContext(AuthContext);
@@ -11,8 +12,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <ul>
+    <nav className="navbar">
+      <ul className="navbar-menu">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -28,9 +29,9 @@ const Navbar = () => {
         )}
         {isAuthenticated && (
           <>
-            <li>Welcome, {user.username}!</li>
+            <li className="navbar-welcome">Welcome, {user.username}!</li>
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <button className="logout-button" onClick={handleLogout}>Logout</button>
             </li>
           </>
         )}
