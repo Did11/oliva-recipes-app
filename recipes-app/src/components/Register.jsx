@@ -3,32 +3,43 @@ import AuthForm from './AuthForm';
 import { AuthContext } from '../contexts/AuthContext';
 
 const Register = () => {
-  const { registerUser } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext); // Usar dispatch para el manejo del estado
   const [error, setError] = useState(null);
 
   const handleRegister = (data) => {
     const { username, password } = data;
 
-    // Obtener usuarios almacenados en localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    // Verificar si el nombre de usuario ya existe
-    const userExists = users.some(user => user.username === username);
-
-    if (userExists) {
+    // Lógica de validación movida a una función separada
+    if (isUsernameTaken(username)) {
       setError('El nombre de usuario ya está en uso.');
       return;
     }
 
-    // Si no existe, registrar el usuario
-    registerUser({ username, password });
-    setError(null);  // Limpiar el mensaje de error si el registro fue exitoso
+    // Registrar el usuario y actualizar el estado de autenticación
+    registerNewUser(username, password);
+  };
+
+  const isUsernameTaken = (username) => {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    return users.some(user => user.username === username);
+  };
+
+  const registerNewUser = (username, password) => {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    users.push({ username, password });
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Despachar la acción LOGIN para actualizar el estado de autenticación
+    dispatch({ type: 'LOGIN', payload: { username, password } });
+
+    // Limpiar cualquier error anterior
+    setError(null);
   };
 
   return (
     <div>
       <h1>Registrarse</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}  {/* Mostrar error si existe */}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <AuthForm
         onSubmit={handleRegister}
         submitLabel="Registrarse"
