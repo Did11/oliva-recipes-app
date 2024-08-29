@@ -1,11 +1,12 @@
-import { useContext } from 'react';
+import { useContext, Fragment } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-import './styles/Navbar.css';  // Asegúrate de importar el archivo CSS
+import './styles/Navbar.css';
+
 
 const Navbar = () => {
   const { state, dispatch } = useContext(AuthContext);
-  const { isAuthenticated, user } = state;
+  const { isAuthenticated } = state;
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
@@ -18,22 +19,24 @@ const Navbar = () => {
           <Link to="/">Home</Link>
         </li>
         {!isAuthenticated && (
-          <>
+          <Fragment>
             <li>
               <Link to="/login">Login</Link>
             </li>
             <li>
               <Link to="/register">Register</Link>
             </li>
-          </>
+          </Fragment>
         )}
         {isAuthenticated && (
-          <>
-            <li className="navbar-welcome">Welcome, {user.username}!</li>
+          <Fragment>
+            <li>
+              <Link to="/profile">Perfil</Link>
+            </li>
             <li>
               <button className="logout-button" onClick={handleLogout}>Logout</button>
             </li>
-          </>
+          </Fragment>
         )}
       </ul>
     </nav>
