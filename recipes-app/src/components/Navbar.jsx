@@ -3,7 +3,6 @@ import { AuthContext } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import './styles/Navbar.css';
 
-
 const Navbar = () => {
   const { state, dispatch } = useContext(AuthContext);
   const { isAuthenticated } = state;
@@ -18,6 +17,9 @@ const Navbar = () => {
         <li>
           <Link to="/">Home</Link>
         </li>
+        <li>
+          <Link to="/recipes">Recetas</Link> 
+        </li>
         {!isAuthenticated && (
           <Fragment>
             <li>
@@ -31,7 +33,7 @@ const Navbar = () => {
         {isAuthenticated && (
           <Fragment>
             <li>
-              <Link to="/profile">Perfil</Link>
+              <Link to="/profile">Mi perfil</Link>
             </li>
             <li>
               <button className="logout-button" onClick={handleLogout}>Logout</button>

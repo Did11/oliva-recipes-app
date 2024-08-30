@@ -1,0 +1,78 @@
+[
+    {
+      "id": 1,
+      "name": "Pizza",
+      "defaultImage": "pizza.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Hamburguesa",
+      "defaultImage": "hamburguesa.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Sushi",
+      "defaultImage": "sushi.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Empanadas",
+      "defaultImage": "empanadas.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Ensalada",
+      "defaultImage": "ensalada.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Pasta",
+      "defaultImage": "pasta.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Tacos",
+      "defaultImage": "tacos.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Sopa",
+      "defaultImage": "sopa.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Postre",
+      "defaultImage": "postre.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Pan",
+      "defaultImage": "pan.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Mariscos",
+      "defaultImage": "mariscos.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Carnes",
+      "defaultImage": "carnes.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Vegetariano",
+      "defaultImage": "vegetariano.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Bebidas",
+      "defaultImage": "bebidas.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Comida Rápida",
+      "defaultImage": "comida_rapida.jpg"
+    }
+  ]
+  

@@ -6,7 +6,7 @@ const RecipeDetailPage = () => {
   return (
     <div>
       <h1>Detalles de la Receta {id}</h1>
-      <p>Aquí se mostrarán los detalles de la receta seleccionada.</p>
+      <p>Los detalles de la receta seleccionada.</p>
     </div>
   );
 };

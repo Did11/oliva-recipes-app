@@ -1,0 +1,51 @@
+.
+├── estructura_proyecto.txt
+├── README.md
+└── recipes-app
+    ├── eslint.config.js
+    ├── index.html
+    ├── package.json
+    ├── package-lock.json
+    ├── public
+    │   └── vite.svg
+    ├── README.md
+    ├── src
+    │   ├── App.css
+    │   ├── App.jsx
+    │   ├── assets
+    │   │   └── react.svg
+    │   ├── components
+    │   │   ├── AuthForm.jsx
+    │   │   ├── Footer.jsx
+    │   │   ├── InputField.jsx
+    │   │   ├── Login.jsx
+    │   │   ├── Navbar.jsx
+    │   │   ├── RecipeItem.jsx
+    │   │   ├── RecipeList.jsx
+    │   │   ├── Register.jsx
+    │   │   ├── styles
+    │   │   │   ├── Footer.css
+    │   │   │   └── Navbar.css
+    │   │   └── UserInfo.jsx
+    │   ├── contexts
+    │   │   └── AuthContext.jsx
+    │   ├── index.css
+    │   ├── main.jsx
+    │   ├── pages
+    │   │   ├── AboutPage.jsx
+    │   │   ├── HomePage.jsx
+    │   │   ├── LoginPage.jsx
+    │   │   ├── ProfilePage.jsx
+    │   │   ├── RecipeDetailPage.jsx
+    │   │   ├── RecipePage.jsx
+    │   │   └── RegisterPage.jsx
+    │   ├── reducers
+    │   │   └── authReducer.js
+    │   ├── routes
+    │   │   ├── PrivateRoute.jsx
+    │   │   └── Routes.jsx
+    │   └── utils
+    │       └── authHelpers.js
+    └── vite.config.js
+
+11 directories, 37 files

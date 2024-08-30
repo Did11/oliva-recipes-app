@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import RecipeItem from './RecipeItem';
 
-const RecipeList = ({ recipes, type }) => {
+const RecipeList = ({ recipes }) => {
   if (recipes.length === 0) {
-    return <p>No has {type === 'followed' ? 'seguido' : 'creado'} ninguna receta aún.</p>;
+    return <p>No hay recetas disponibles.</p>; 
   }
 
   return (
     <ul className="recipe-list">
       {recipes.map((recipe) => (
-        <RecipeItem key={recipe.id} recipe={recipe} type={type} />
+        <RecipeItem key={recipe.id} recipe={recipe} />
       ))}
     </ul>
   );
@@ -17,7 +17,6 @@ const RecipeList = ({ recipes, type }) => {
 
 RecipeList.propTypes = {
   recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
-  type: PropTypes.oneOf(['followed', 'created']).isRequired,
 };
 
 export default RecipeList;
