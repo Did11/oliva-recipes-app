@@ -8,16 +8,16 @@ const ToggleFollowButton = ({ recipeId }) => {
     setIsFollowed(checkIfFollowed(recipeId));
   }, [recipeId]);
 
-  function checkIfFollowed(id) {
+  const checkIfFollowed = (id) => {
     const followedRecipes = JSON.parse(localStorage.getItem('followedRecipes')) || [];
-    return followedRecipes.some(recipeId => recipeId === id);
-  }
+    return followedRecipes.some(followedId => followedId === id);
+  };
 
-  function handleFollow() {
+  const handleFollow = () => {
     const followedRecipes = JSON.parse(localStorage.getItem('followedRecipes')) || [];
     if (isFollowed) {
       // Unfollow logic
-      const updatedRecipes = followedRecipes.filter(recipeId => recipeId !== recipeId);
+      const updatedRecipes = followedRecipes.filter(followedId => followedId !== recipeId);
       localStorage.setItem('followedRecipes', JSON.stringify(updatedRecipes));
     } else {
       // Follow logic
@@ -25,7 +25,7 @@ const ToggleFollowButton = ({ recipeId }) => {
       localStorage.setItem('followedRecipes', JSON.stringify(followedRecipes));
     }
     setIsFollowed(!isFollowed);
-  }
+  };
 
   return (
     <button onClick={handleFollow}>

@@ -19,11 +19,13 @@ const Register = () => {
     registerNewUser(username, password);
   };
 
+  // Verificar si el nombre de usuario ya está en uso
   const isUsernameTaken = (username) => {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     return users.some(user => user.username === username);
   };
 
+  // Registrar un nuevo usuario y guardar en localStorage
   const registerNewUser = (username, password) => {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     users.push({ username, password });
