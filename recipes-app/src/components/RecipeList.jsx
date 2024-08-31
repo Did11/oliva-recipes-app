@@ -1,22 +1,30 @@
 import PropTypes from 'prop-types';
-import RecipeItem from './RecipeItem';
+import RecipeCard from './RecipeCard';
 
 const RecipeList = ({ recipes }) => {
   if (recipes.length === 0) {
-    return <p>No hay recetas disponibles.</p>; 
+    return <p>No hay recetas disponibles.</p>;
   }
 
   return (
-    <ul className="recipe-list">
+    <div className="recipe-list">
       {recipes.map((recipe) => (
-        <RecipeItem key={recipe.id} recipe={recipe} />
+        <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
-    </ul>
+    </div>
   );
 };
 
 RecipeList.propTypes = {
-  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  recipes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      photo: PropTypes.string,
+      author: PropTypes.string,
+      difficulty: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default RecipeList;

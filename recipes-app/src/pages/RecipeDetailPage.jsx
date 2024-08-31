@@ -1,12 +1,9 @@
-import { useParams } from 'react-router-dom';
+import RecipeItem from '../components/RecipeItem'; // Asegúrate de importar RecipeItem
 
 const RecipeDetailPage = () => {
-  const { id } = useParams();
-
   return (
     <div>
-      <h1>Detalles de la Receta {id}</h1>
-      <p>Los detalles de la receta seleccionada.</p>
+      <RecipeItem /> {/* Renderiza el componente RecipeItem */}
     </div>
   );
 };

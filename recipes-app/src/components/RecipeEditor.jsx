@@ -1,12 +1,23 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import InputField from './InputField';
 import categories from '../data/categories.json';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../contexts/AuthContext'; // Importar AuthContext
+
+const getNextId = () => {
+  const currentId = parseInt(localStorage.getItem('recipeIdCounter') || '0', 10);
+  const nextId = currentId + 1;
+  localStorage.setItem('recipeIdCounter', nextId.toString());
+  return nextId.toString();
+};
 
 const RecipeEditor = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate();
+  const { state } = useContext(AuthContext); // Obtener el estado de autenticación
+  const { user } = state; // Obtener el usuario autenticado
 
-  // Opciones de dificultad definidas localmente
   const difficultyLevels = ['Muy Fácil', 'Fácil', 'Moderado', 'Difícil', 'Muy Difícil'];
 
   const [recipe, setRecipe] = useState({
@@ -17,7 +28,6 @@ const RecipeEditor = () => {
     category: '',
   });
 
-  // Agrega un nuevo campo de ingrediente
   const addIngredientField = () => {
     setRecipe((prevRecipe) => ({
       ...prevRecipe,
@@ -25,7 +35,6 @@ const RecipeEditor = () => {
     }));
   };
 
-  // Agrega un nuevo campo de instrucción
   const addInstructionField = () => {
     setRecipe((prevRecipe) => ({
       ...prevRecipe,
@@ -33,21 +42,30 @@ const RecipeEditor = () => {
     }));
   };
 
-  // Maneja el envío del formulario
   const onSubmit = (data) => {
-    const newRecipe = { ...recipe, ...data };
+    const selectedCategory = categories.find(
+      (category) => category.name === data.category
+    );
 
-    // Guardar la receta en localStorage
+    const newRecipe = {
+      id: getNextId(),
+      ...recipe,
+      ...data,
+      image: selectedCategory ? selectedCategory.defaultImage : 'default.jpg',
+      author: user.username // Asignar el nombre de usuario como autor
+    };
+
     const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
     savedRecipes.push(newRecipe);
     localStorage.setItem('recipes', JSON.stringify(savedRecipes));
 
     console.log('Receta guardada:', newRecipe);
+
+    navigate(`/recipes/${newRecipe.id}`);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {/* Título de la receta */}
       <InputField
         label="Título:"
         name="title"
@@ -55,7 +73,6 @@ const RecipeEditor = () => {
         error={errors.title}
       />
 
-      {/* Ingredientes */}
       <div>
         <label>Ingredientes:</label>
         {recipe.ingredients.map((ingredient, index) => (
@@ -73,7 +90,6 @@ const RecipeEditor = () => {
         </button>
       </div>
 
-      {/* Instrucciones */}
       <div>
         <label>Instrucciones:</label>
         {recipe.instructions.map((instruction, index) => (
@@ -91,7 +107,6 @@ const RecipeEditor = () => {
         </button>
       </div>
 
-      {/* Dificultad */}
       <div>
         <label htmlFor="difficulty">Dificultad:</label>
         <select
@@ -107,7 +122,6 @@ const RecipeEditor = () => {
         </select>
       </div>
 
-      {/* Categoría */}
       <div>
         <label htmlFor="category">Categoría:</label>
         <select
@@ -124,7 +138,6 @@ const RecipeEditor = () => {
         </select>
       </div>
 
-      {/* Botón de envío */}
       <button type="submit">Guardar Receta</button>
     </form>
   );

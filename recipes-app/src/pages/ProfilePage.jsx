@@ -1,15 +1,28 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import UserInfo from '../components/UserInfo';
 import RecipeList from '../components/RecipeList';
+import ToggleFollowButton from '../components/ToggleFollowButton'; // Importa el componente
 import { AuthContext } from '../contexts/AuthContext';
 
 const ProfilePage = () => {
   const { state } = useContext(AuthContext);
   const { user } = state;
 
-  // Aquí se obtendrían las recetas creadas y seguidas por el usuario desde la base de datos o un API
-  const followedRecipes = [/* Obtener recetas seguidas del usuario */];
-  const createdRecipes = [/* Obtener recetas creadas por el usuario */];
+  const [followedRecipes, setFollowedRecipes] = useState([]);
+  const [createdRecipes, setCreatedRecipes] = useState([]);
+
+  useEffect(() => {
+    const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+    
+    // Filtrar las recetas creadas por el usuario
+    const userCreatedRecipes = savedRecipes.filter(recipe => recipe.author === user.username);
+    setCreatedRecipes(userCreatedRecipes);
+
+    // Obtener las recetas seguidas por el usuario
+    const followedIds = JSON.parse(localStorage.getItem('followedRecipes')) || [];
+    const userFollowedRecipes = savedRecipes.filter(recipe => followedIds.includes(recipe.id));
+    setFollowedRecipes(userFollowedRecipes);
+  }, [user.username]);
 
   return (
     <div>
@@ -18,12 +31,27 @@ const ProfilePage = () => {
       
       <section>
         <h2>Recetas que sigues</h2>
-        <RecipeList recipes={followedRecipes} type="followed" />
+        {followedRecipes.length > 0 ? (
+          <RecipeList recipes={followedRecipes} type="followed">
+            {followedRecipes.map(recipe => (
+              <div key={recipe.id}>
+                <h3>{recipe.title}</h3>
+                <ToggleFollowButton recipeId={recipe.id} /> {/* Botón para dejar de seguir */}
+              </div>
+            ))}
+          </RecipeList>
+        ) : (
+          <p>No hay recetas disponibles.</p>
+        )}
       </section>
       
       <section>
         <h2>Recetas que has creado</h2>
-        <RecipeList recipes={createdRecipes} type="created" />
+        {createdRecipes.length > 0 ? (
+          <RecipeList recipes={createdRecipes} type="created" />
+        ) : (
+          <p>No hay recetas disponibles.</p>
+        )}
       </section>
     </div>
   );

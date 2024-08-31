@@ -1,13 +1,20 @@
 const recipeReducer = (state, action) => {
+  let newState;
   switch (action.type) {
     case 'ADD_RECIPE':
-      return [...state, action.payload];
+      newState = [...state, action.payload];
+      localStorage.setItem('recipes', JSON.stringify(newState));
+      return newState;
     case 'UPDATE_RECIPE':
-      return state.map(recipe => 
+      newState = state.map(recipe =>
         recipe.id === action.payload.id ? action.payload : recipe
       );
+      localStorage.setItem('recipes', JSON.stringify(newState));
+      return newState;
     case 'DELETE_RECIPE':
-      return state.filter(recipe => recipe.id !== action.payload);
+      newState = state.filter(recipe => recipe.id !== action.payload);
+      localStorage.setItem('recipes', JSON.stringify(newState));
+      return newState;
     default:
       return state;
   }
