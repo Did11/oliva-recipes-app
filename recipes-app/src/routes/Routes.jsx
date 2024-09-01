@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import RecipeListPage from '../pages/RecipeListPage';
-import RecipeEditorPage from '../pages/RecipeEditorPage';
+import RecipeFormPage from '../pages/RecipeFormPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import AboutPage from '../pages/AboutPage';
@@ -20,10 +20,16 @@ const AppRoutes = () => {
       <Route path="/recipes" element={<RecipeListPage />} />
       <Route path="/recipes/:id" element={<RecipeDetailPage />} />
 
-      {/* Proteger la ruta de creación de recetas */}
+      {/* Ruta para crear nuevas recetas */}
       <Route
         path="/recipes/new"
-        element={<PrivateRoute element={RecipeEditorPage} />}
+        element={<PrivateRoute element={RecipeFormPage} />}
+      />
+
+      {/* Ruta para editar recetas existentes */}
+      <Route
+        path="/edit-recipe/:id"
+        element={<PrivateRoute element={RecipeFormPage} />}
       />
 
       {/* Rutas públicas protegidas por autenticación */}

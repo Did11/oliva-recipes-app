@@ -1,14 +1,23 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 import ToggleFollowButton from './ToggleFollowButton';
 
 const RecipeItem = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { state } = useContext(AuthContext);
+  const { user } = state;
   const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
   const recipe = recipes.find((recipe) => recipe.id === id);
 
   if (!recipe) {
     return <p>No se encontró la receta.</p>;
   }
+
+  const handleEdit = () => {
+    navigate(`/edit-recipe/${recipe.id}`);
+  };
 
   return (
     <div className="recipe-item-detail">
@@ -31,8 +40,12 @@ const RecipeItem = () => {
           <li key={index}>{instruction}</li>
         ))}
       </ol>
-      <button>Editar Receta</button>
-      <ToggleFollowButton recipeId={recipe.id} />
+      {user.username === recipe.author && (
+        <button onClick={handleEdit}>Editar Receta</button>
+      )}
+      {user.username !== recipe.author && (
+        <ToggleFollowButton recipeId={recipe.id} />
+      )}
     </div>
   );
 };

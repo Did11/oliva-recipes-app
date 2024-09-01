@@ -1,12 +1,19 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 
 const ToggleFollowButton = ({ recipeId }) => {
   const [isFollowed, setIsFollowed] = useState(false);
+  const { state } = useContext(AuthContext);
+  const { user } = state;
+  const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+  const recipe = recipes.find((recipe) => recipe.id === recipeId);
 
   useEffect(() => {
-    setIsFollowed(checkIfFollowed(recipeId));
-  }, [recipeId]);
+    if (recipe && user.username !== recipe.author) {
+      setIsFollowed(checkIfFollowed(recipeId));
+    }
+  }, [recipeId, recipe, user.username]);
 
   const checkIfFollowed = (id) => {
     const followedRecipes = JSON.parse(localStorage.getItem('followedRecipes')) || [];
@@ -14,13 +21,16 @@ const ToggleFollowButton = ({ recipeId }) => {
   };
 
   const handleFollow = () => {
+    if (recipe && user.username === recipe.author) {
+      alert("No puedes seguir tus propias recetas.");
+      return;
+    }
+
     const followedRecipes = JSON.parse(localStorage.getItem('followedRecipes')) || [];
     if (isFollowed) {
-      // Unfollow logic
       const updatedRecipes = followedRecipes.filter(followedId => followedId !== recipeId);
       localStorage.setItem('followedRecipes', JSON.stringify(updatedRecipes));
     } else {
-      // Follow logic
       followedRecipes.push(recipeId);
       localStorage.setItem('followedRecipes', JSON.stringify(followedRecipes));
     }

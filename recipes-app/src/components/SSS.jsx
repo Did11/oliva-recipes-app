@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import InputField from './InputField';
 import categories from '../data/categories.json';
 import { useForm } from 'react-hook-form';
@@ -12,8 +12,9 @@ const getNextId = () => {
   return nextId.toString();
 };
 
-const RecipeEditor = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+const RecipeForm = () => {
+  const { id } = useParams(); // Obtener el ID de la receta si existe
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const { state } = useContext(AuthContext);
   const { user } = state;
@@ -22,11 +23,36 @@ const RecipeEditor = () => {
 
   const [recipe, setRecipe] = useState({
     title: '',
-    ingredients: [{ name: '', quantity: '', unit: '' }], // Ingredientes con cantidad y unidad
+    ingredients: [{ name: '', quantity: '', unit: '' }],
     instructions: [''],
     difficulty: 'Muy Fácil',
     category: '',
   });
+
+  useEffect(() => {
+    if (id) {
+      const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+      const recipeToEdit = savedRecipes.find((recipe) => recipe.id === id);
+      if (recipeToEdit) {
+        setRecipe(recipeToEdit);
+
+        // Auto completar los valores en el formulario
+        setValue('title', recipeToEdit.title);
+        setValue('difficulty', recipeToEdit.difficulty);
+        setValue('category', recipeToEdit.category);
+
+        recipeToEdit.ingredients.forEach((ingredient, index) => {
+          setValue(`ingredients[${index}].name`, ingredient.name);
+          setValue(`ingredients[${index}].quantity`, ingredient.quantity);
+          setValue(`ingredients[${index}].unit`, ingredient.unit);
+        });
+
+        recipeToEdit.instructions.forEach((instruction, index) => {
+          setValue(`instructions[${index}]`, instruction);
+        });
+      }
+    }
+  }, [id, setValue]);
 
   const addIngredientField = () => {
     setRecipe((prevRecipe) => ({
@@ -56,15 +82,22 @@ const RecipeEditor = () => {
     );
 
     const newRecipe = {
-      id: getNextId(),
+      id: id || getNextId(),
       ...recipe,
       ...data,
       image: selectedCategory ? selectedCategory.defaultImage : 'default.jpg',
-      author: user.username, // Asignar el nombre de usuario como autor
+      author: recipe.author || user.username,
     };
 
     const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
-    savedRecipes.push(newRecipe);
+
+    if (id) {
+      const recipeIndex = savedRecipes.findIndex((r) => r.id === id);
+      savedRecipes[recipeIndex] = newRecipe;
+    } else {
+      savedRecipes.push(newRecipe);
+    }
+
     localStorage.setItem('recipes', JSON.stringify(savedRecipes));
 
     console.log('Receta guardada:', newRecipe);
@@ -74,6 +107,7 @@ const RecipeEditor = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <h2>{id ? 'Editar Receta' : 'Crear Nueva Receta'}</h2>
       <InputField
         label="Título:"
         name="title"
@@ -168,9 +202,9 @@ const RecipeEditor = () => {
         </select>
       </div>
 
-      <button type="submit">Guardar Receta</button>
+      <button type="submit">{id ? 'Actualizar Receta' : 'Guardar Receta'}</button>
     </form>
   );
 };
 
-export default RecipeEditor;
+export default RecipeForm;
