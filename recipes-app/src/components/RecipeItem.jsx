@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import ToggleFollowButton from './ToggleFollowButton';
+import DeleteButton from './DeleteButton';
 
 const RecipeItem = () => {
   const { id } = useParams();
@@ -17,6 +18,10 @@ const RecipeItem = () => {
 
   const handleEdit = () => {
     navigate(`/edit-recipe/${recipe.id}`);
+  };
+
+  const handleDelete = () => {
+    navigate('/recipes'); // Redirige al usuario a la lista de recetas después de eliminar
   };
 
   return (
@@ -41,7 +46,10 @@ const RecipeItem = () => {
         ))}
       </ol>
       {user.username === recipe.author && (
-        <button onClick={handleEdit}>Editar Receta</button>
+        <>
+          <button onClick={handleEdit}>Editar Receta</button>
+          <DeleteButton recipeId={recipe.id} onDelete={handleDelete} />
+        </>
       )}
       {user.username !== recipe.author && (
         <ToggleFollowButton recipeId={recipe.id} />
