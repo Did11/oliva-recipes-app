@@ -22,7 +22,7 @@
     {
       "id": 5,
       "name": "Ensalada",
-      "defaultImage": "ensalada.jpeg"
+      "defaultImage": "ensalada.jpg"
     },
     {
       "id": 6,
@@ -31,48 +31,33 @@
     },
     {
       "id": 7,
-      "name": "Tacos",
-      "defaultImage": "tacos.jpg"
-    },
-    {
-      "id": 8,
       "name": "Sopa",
       "defaultImage": "sopa.jpg"
     },
     {
-      "id": 9,
+      "id": 8,
       "name": "Postre",
       "defaultImage": "postre.jpg"
     },
     {
-      "id": 10,
+      "id": 9,
       "name": "Pan",
       "defaultImage": "pan.jpg"
     },
     {
-      "id": 11,
-      "name": "Mariscos",
-      "defaultImage": "mariscos.jpg"
-    },
-    {
-      "id": 12,
+      "id": 10,
       "name": "Carnes",
       "defaultImage": "carnes.jpg"
     },
     {
-      "id": 13,
-      "name": "Vegetariano",
-      "defaultImage": "vegetariano.jpg"
+      "id": 11,
+      "name": "Vegana",
+      "defaultImage": "vegana.jpg"
     },
     {
-      "id": 14,
-      "name": "Bebidas",
-      "defaultImage": "bebidas.jpg"
-    },
-    {
-      "id": 15,
-      "name": "Comida Rápida",
-      "defaultImage": "comida_rapida.jpg"
+      "id": 12,
+      "name": "Sin glúten",
+      "defaultImage": "glutenfree.jpg"
     }
   ]
   

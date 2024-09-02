@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -67,8 +72,10 @@ button:hover {
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px solid rgba(59, 130, 246, 0.5); /* Cambia el color y estilo a algo más estándar */
+  outline-offset: 2px; /* Añade un pequeño espacio entre el contorno y el botón */
 }
+
 
 @media (prefers-color-scheme: dark) {
   :root {

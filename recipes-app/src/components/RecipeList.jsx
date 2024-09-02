@@ -3,9 +3,9 @@ import RecipeCard from './RecipeCard';
 
 const RecipeList = ({ recipes }) => (
   recipes.length === 0 ? (
-    <p>No hay recetas disponibles.</p>
+    <p className="text-center text-gray-500">No hay recetas disponibles.</p>
   ) : (
-    <div className="recipe-list">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {recipes.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}

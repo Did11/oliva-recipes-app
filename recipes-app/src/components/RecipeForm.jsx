@@ -1,3 +1,4 @@
+// RecipeForm.jsx
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
@@ -11,14 +12,14 @@ const RecipeForm = () => {
   const { state } = useContext(AuthContext);
   const { user } = state;
 
-  const difficultyLevels = ['Muy Fácil', 'Fácil', 'Moderado', 'Difícil', 'Muy Difícil'];
-
   const [recipe, setRecipe] = useState({
     title: '',
-    ingredients: [{ name: '', quantity: '', unit: '' }],
-    instructions: [''],
     difficulty: 'Muy Fácil',
     category: '',
+    preparationTime: '',
+    cookingTime: '',
+    ingredients: [{ name: '', quantity: '', unit: 'unidad' }],
+    instructions: [''],
   });
 
   useEffect(() => {
@@ -26,45 +27,45 @@ const RecipeForm = () => {
       const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
       const recipeToEdit = savedRecipes.find((recipe) => recipe.id === id);
       if (recipeToEdit) {
-        setRecipe(recipeToEdit);
+        setRecipe({
+          ...recipeToEdit,
+        });
       }
     }
   }, [id]);
 
-  const handleIngredientChange = (index, field, value) => {
-    const updatedIngredients = [...recipe.ingredients];
-    updatedIngredients[index][field] = value;
-    setRecipe({ ...recipe, ingredients: updatedIngredients });
+  const handleIngredientsChange = (updatedIngredients) => {
+    setRecipe((prevRecipe) => ({ ...prevRecipe, ingredients: updatedIngredients }));
   };
 
-  const handleInstructionChange = (index, value) => {
-    const updatedInstructions = [...recipe.instructions];
-    updatedInstructions[index] = value;
-    setRecipe({ ...recipe, instructions: updatedInstructions });
+  const handleInstructionsChange = (updatedInstructions) => {
+    setRecipe((prevRecipe) => ({ ...prevRecipe, instructions: updatedInstructions }));
   };
 
-  const addIngredientField = () => {
-    setRecipe((prevRecipe) => ({
-      ...prevRecipe,
-      ingredients: [...prevRecipe.ingredients, { name: '', quantity: '', unit: '' }],
-    }));
-  };
-
-  const addInstructionField = () => {
-    setRecipe((prevRecipe) => ({
-      ...prevRecipe,
-      instructions: [...prevRecipe.instructions, ''],
-    }));
+  const validateRecipe = () => {
+    const { title, difficulty, category, preparationTime, cookingTime, ingredients, instructions } = recipe;
+    if (!title.trim() || !difficulty || !category || !preparationTime || !cookingTime) return false;
+    if (ingredients.length === 0 || instructions.length === 0) return false;
+    const invalidIngredient = ingredients.some(
+      (ing) => !ing.name.trim() || !ing.quantity.trim() || !ing.unit.trim()
+    );
+    const invalidInstruction = instructions.some((instr) => !instr.trim());
+    return !invalidIngredient && !invalidInstruction;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const selectedCategory = categories.find((category) => category.name === recipe.category);
+    if (!validateRecipe()) {
+      alert('Por favor, complete todos los campos correctamente antes de guardar la receta.');
+      return;
+    }
+
+    const selectedCategory = categories.find((cat) => cat.name === recipe.category);
     const newRecipe = {
       ...recipe,
-      id: id || new Date().getTime().toString(),
+      id: id || Date.now().toString(),
       image: selectedCategory ? selectedCategory.defaultImage : 'default.jpg',
-      author: recipe.author || user.username,
+      author: user.username,
     };
 
     const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
@@ -90,16 +91,32 @@ const RecipeForm = () => {
         />
       </div>
 
+      <div>
+        <label>Tiempo de preparación (minutos):</label>
+        <input
+          type="number"
+          value={recipe.preparationTime}
+          onChange={(e) => setRecipe({ ...recipe, preparationTime: e.target.value })}
+        />
+      </div>
+
+      <div>
+        <label>Tiempo de cocción (minutos):</label>
+        <input
+          type="number"
+          value={recipe.cookingTime}
+          onChange={(e) => setRecipe({ ...recipe, cookingTime: e.target.value })}
+        />
+      </div>
+
       <IngredientFields
-        ingredients={recipe.ingredients}
-        onIngredientChange={handleIngredientChange}
-        onAddIngredient={addIngredientField} // Pasar la función para añadir ingredientes
+        initialIngredients={recipe.ingredients}
+        onIngredientsChange={handleIngredientsChange}
       />
 
       <InstructionFields
-        instructions={recipe.instructions}
-        onInstructionChange={handleInstructionChange}
-        onAddInstruction={addInstructionField} // Pasar la función para añadir instrucciones
+        initialInstructions={recipe.instructions}
+        onInstructionsChange={handleInstructionsChange}
       />
 
       <div>
@@ -108,7 +125,7 @@ const RecipeForm = () => {
           value={recipe.difficulty}
           onChange={(e) => setRecipe({ ...recipe, difficulty: e.target.value })}
         >
-          {difficultyLevels.map((level) => (
+          {['Muy Fácil', 'Fácil', 'Moderado', 'Difícil', 'Muy Difícil'].map((level) => (
             <option key={level} value={level}>
               {level}
             </option>
@@ -122,6 +139,7 @@ const RecipeForm = () => {
           value={recipe.category}
           onChange={(e) => setRecipe({ ...recipe, category: e.target.value })}
         >
+          <option value="">Seleccionar categoría</option>
           {categories.map((category) => (
             <option key={category.id} value={category.name}>
               {category.name}

@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, Fragment } from 'react'; 
 import { AuthContext } from '../contexts/AuthContext';
 import ToggleFollowButton from './ToggleFollowButton';
 import DeleteButton from './DeleteButton';
@@ -24,6 +24,20 @@ const RecipeItem = () => {
     navigate('/recipes'); // Redirige al usuario a la lista de recetas después de eliminar
   };
 
+  // Función para pluralizar las unidades
+  const pluralizeUnit = (quantity, unit) => {
+    if (quantity === '1') return unit;
+    const unitMap = {
+      unidad: 'unidades',
+      gramo: 'gramos',
+      litro: 'litros',
+      taza: 'tazas',
+      cucharada: 'cucharadas',
+      cucharadita: 'cucharaditas',
+    };
+    return unitMap[unit] || unit;
+  };
+
   return (
     <div className="recipe-item-detail">
       <h1>{recipe.title}</h1>
@@ -31,11 +45,13 @@ const RecipeItem = () => {
       <p>Autor: {recipe.author || 'Anónimo'}</p>
       <p>Dificultad: {recipe.difficulty}</p>
       <p>Categoría: {recipe.category}</p>
+      <p>Tiempo de preparación: {recipe.preparationTime} minutos</p>
+      <p>Tiempo de cocción: {recipe.cookingTime} minutos</p>
       <h3>Ingredientes</h3>
       <ul>
         {recipe.ingredients.map((ingredient, index) => (
           <li key={index}>
-            {ingredient.quantity} {ingredient.unit} de {ingredient.name}
+            {ingredient.quantity} {pluralizeUnit(ingredient.quantity, ingredient.unit)} de {ingredient.name}
           </li>
         ))}
       </ul>
@@ -45,13 +61,12 @@ const RecipeItem = () => {
           <li key={index}>{instruction}</li>
         ))}
       </ol>
-      {user.username === recipe.author && (
-        <>
+      {user.username === recipe.author ? (
+        <Fragment>
           <button onClick={handleEdit}>Editar Receta</button>
           <DeleteButton recipeId={recipe.id} onDelete={handleDelete} />
-        </>
-      )}
-      {user.username !== recipe.author && (
+        </Fragment>
+      ) : (
         <ToggleFollowButton recipeId={recipe.id} />
       )}
     </div>
