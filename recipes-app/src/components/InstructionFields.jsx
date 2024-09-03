@@ -1,4 +1,3 @@
-// InstructionFields.jsx
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -29,21 +28,30 @@ const InstructionFields = ({ initialInstructions, onInstructionsChange }) => {
   };
 
   return (
-    <div>
-      <label>Instrucciones:</label>
+    <div className="space-y-2">
+      <label className="block text-sm font-medium text-gray-700">Instrucciones:</label>
       {instructions.map((instruction, index) => (
-        <div key={index} className="instruction-field">
+        <div key={index} className="flex items-center space-x-2">
           <textarea
             placeholder={`Paso ${index + 1}`}
             value={instruction}
             onChange={(e) => handleInstructionChange(index, e.target.value)}
+            className="flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
           />
-          <button type="button" onClick={() => removeInstructionField(index)}>
+          <button
+            type="button"
+            onClick={() => removeInstructionField(index)}
+            className="px-3 py-1 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          >
             Eliminar
           </button>
         </div>
       ))}
-      <button type="button" onClick={addInstructionField}>
+      <button
+        type="button"
+        onClick={addInstructionField}
+        className="w-full mt-2 text-sm text-indigo-600 bg-indigo-100 rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
         Añadir Instrucción
       </button>
     </div>

@@ -19,12 +19,12 @@ const SearchBar = ({ categories }) => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Buscar recetas..."
-        className="p-2 rounded bg-gray-200 text-gray-800"
+        className="h-10 px-4 py-2 rounded bg-gray-200 text-gray-800"
       />
       <select
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
-        className="p-2 rounded bg-gray-200 text-gray-800"
+        className="h-10 px-4 py-2 rounded bg-gray-200 text-gray-800"
       >
         <option value="">Todas las categorías</option>
         {categories.map((category) => (
@@ -35,7 +35,7 @@ const SearchBar = ({ categories }) => {
       </select>
       <button
         type="submit"
-        className="bg-blue-600 text-white p-2 rounded hover:bg-blue-800"
+        className="h-10 px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 transition-colors duration-200 focus:outline-none"
       >
         Buscar
       </button>

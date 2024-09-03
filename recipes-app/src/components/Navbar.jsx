@@ -1,52 +1,73 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
 const Navbar = ({ categories }) => {
   const { state, dispatch } = useContext(AuthContext);
   const { isAuthenticated } = state;
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
   };
 
+  const handleAddRecipeClick = () => {
+    if (isAuthenticated) {
+      navigate('/recipes/new');
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
-    <nav className="bg-gray-800 p-2 px-5">
-      <ul className="list-none flex justify-between items-center m-0 p-0 gap-12">
-        <div className="flex items-center space-x-4">
+    <nav className="bg-gradient-to-r from-yellow-600 via-orange-500 to-red-500 p-3 shadow-lg">
+      <ul className="list-none flex justify-center items-center m-0 p-0 gap-8">
+        <li>
+          <Link to="/">
+            <img src="/images/logo-transparent.png" alt="Home" className="h-16 w-16" />
+          </Link>
+        </li>
+        <li>
+          <Link to="/recipes" className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200">Recetas</Link>
+        </li>
+        {isAuthenticated && (
           <li>
-            <Link to="/" className="text-white no-underline text-base hover:underline">Home</Link>
+            <button 
+              onClick={handleAddRecipeClick} 
+              className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200 bg-transparent border-none cursor-pointer focus:outline-none"
+            >
+              Agregar Receta
+            </button>
           </li>
-          <li>
-            <Link to="/recipes" className="text-white no-underline text-base hover:underline">Recetas</Link>
-          </li>
-        </div>
-        <SearchBar categories={categories} />
+        )}
+        <li className="flex-grow">
+          <SearchBar categories={categories} />
+        </li>
         {!isAuthenticated && (
-          <div className="flex items-center space-x-4">
+          <>
             <li>
-              <Link to="/login" className="text-white no-underline text-base hover:underline">Login</Link>
+              <Link to="/login" className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200">Login</Link>
             </li>
             <li>
-              <Link to="/register" className="text-white no-underline text-base hover:underline">Register</Link>
+              <Link to="/register" className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200">Register</Link>
             </li>
-          </div>
+          </>
         )}
         {isAuthenticated && (
-          <div className="flex items-center space-x-4">
+          <>
             <li>
-              <Link to="/profile" className="text-white no-underline text-base hover:underline">Mi perfil</Link>
+              <Link to="/profile" className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200">Mi perfil</Link>
             </li>
             <li>
               <button 
-                className="bg-gray-700 text-white border-none px-2 py-1 cursor-pointer hover:bg-gray-500" 
+                className="bg-red-600 text-white border-none px-3 py-1 cursor-pointer hover:bg-red-500 rounded transition-colors duration-200" 
                 onClick={handleLogout}>
                 Logout
               </button>
             </li>
-          </div>
+          </>
         )}
       </ul>
     </nav>

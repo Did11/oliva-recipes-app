@@ -33,10 +33,11 @@ const RecipeItem = () => {
     const unitMap = {
       unidad: 'unidades',
       gramo: 'gramos',
+      kilo: 'kilos',
+      'centímetro cúbico': 'c.c.',
       litro: 'litros',
       taza: 'tazas',
       cucharada: 'cucharadas',
-      cucharadita: 'cucharaditas',
     };
     return unitMap[unit] || unit;
   };

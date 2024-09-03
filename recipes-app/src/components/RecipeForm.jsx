@@ -111,111 +111,15 @@ const RecipeForm = () => {
         />
       </div>
 
-      <div className="space-y-1">
-        <label className="block text-sm font-medium text-gray-700">Ingredientes:</label>
-        <div className="space-y-2">
-          {recipe.ingredients.map((ingredient, index) => (
-            <div key={index} className="flex items-center space-x-2">
-              <input
-                type="text"
-                value={ingredient.name}
-                onChange={(e) =>
-                  handleIngredientsChange(
-                    recipe.ingredients.map((ing, i) =>
-                      i === index ? { ...ing, name: e.target.value } : ing
-                    )
-                  )
-                }
-                placeholder="Ingrediente"
-                className="flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
-              />
-              <input
-                type="text"
-                value={ingredient.quantity}
-                onChange={(e) =>
-                  handleIngredientsChange(
-                    recipe.ingredients.map((ing, i) =>
-                      i === index ? { ...ing, quantity: e.target.value } : ing
-                    )
-                  )
-                }
-                placeholder="Cantidad"
-                className="w-24 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
-              />
-              <select
-                value={ingredient.unit}
-                onChange={(e) =>
-                  handleIngredientsChange(
-                    recipe.ingredients.map((ing, i) =>
-                      i === index ? { ...ing, unit: e.target.value } : ing
-                    )
-                  )
-                }
-                className="w-24 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
-              >
-                <option value="unidad">Unidad</option>
-                <option value="gramos">Gramos</option>
-                <option value="litros">Litros</option>
-              </select>
-              <button
-                type="button"
-                onClick={() =>
-                  handleIngredientsChange(recipe.ingredients.filter((_, i) => i !== index))
-                }
-                className="px-3 py-1 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-              >
-                Eliminar
-              </button>
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={() =>
-              handleIngredientsChange([...recipe.ingredients, { name: '', quantity: '', unit: 'unidad' }])
-            }
-            className="w-full mt-2 text-sm text-indigo-600 bg-indigo-100 rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Añadir Ingrediente
-          </button>
-        </div>
-      </div>
+      <IngredientFields
+        initialIngredients={recipe.ingredients}
+        onIngredientsChange={handleIngredientsChange}
+      />
 
-      <div className="space-y-1">
-        <label className="block text-sm font-medium text-gray-700">Instrucciones:</label>
-        <div className="space-y-2">
-          {recipe.instructions.map((instruction, index) => (
-            <div key={index} className="flex items-center space-x-2">
-              <input
-                type="text"
-                value={instruction}
-                onChange={(e) =>
-                  handleInstructionsChange(
-                    recipe.instructions.map((instr, i) => (i === index ? e.target.value : instr))
-                  )
-                }
-                placeholder="Instrucción"
-                className="flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
-              />
-              <button
-                type="button"
-                onClick={() =>
-                  handleInstructionsChange(recipe.instructions.filter((_, i) => i !== index))
-                }
-                className="px-3 py-1 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-              >
-                Eliminar
-              </button>
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={() => handleInstructionsChange([...recipe.instructions, ''])}
-            className="w-full mt-2 text-sm text-indigo-600 bg-indigo-100 rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Añadir Instrucción
-          </button>
-        </div>
-      </div>
+      <InstructionFields
+        initialInstructions={recipe.instructions}
+        onInstructionsChange={handleInstructionsChange}
+      />
 
       <div className="space-y-1">
         <label className="block text-sm font-medium text-gray-700">Dificultad:</label>
