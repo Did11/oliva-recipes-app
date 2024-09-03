@@ -5,7 +5,7 @@ import ToggleFollowButton from './ToggleFollowButton';
 import DeleteButton from './DeleteButton';
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root'); // Asegúrate de que esto coincide con tu div principal en index.html
 
 const RecipeItem = () => {
   const { id } = useParams();
@@ -25,7 +25,7 @@ const RecipeItem = () => {
   };
 
   const handleDelete = () => {
-    navigate('/recipes'); 
+    navigate('/recipes'); // Redirige al usuario a la lista de recetas después de eliminar
   };
 
   const pluralizeUnit = (quantity, unit) => {
@@ -42,18 +42,18 @@ const RecipeItem = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+    <div className="bg-gray-100 p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
       <div className="flex mb-8">
         <div className="w-1/2 pr-4">
           <img 
             src={`/images/${recipe.image}`} 
             alt={recipe.title} 
-            className="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer hover:shadow-xl transition-shadow duration-300" 
+            className="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer" 
             onClick={() => setModalIsOpen(true)} 
           />
         </div>
         <div className="w-1/2 pl-4 flex flex-col justify-center">
-          <h1 className="text-3xl font-bold mb-4 text-orange-600">{recipe.title}</h1>
+          <h1 className="text-3xl font-bold mb-4">{recipe.title}</h1>
           <p className="text-lg mb-2"><strong>Autor:</strong> {recipe.author || 'Anónimo'}</p>
           <p className="text-lg mb-2"><strong>Dificultad:</strong> {recipe.difficulty}</p>
           <p className="text-lg mb-2"><strong>Categoría:</strong> {recipe.category}</p>
@@ -62,7 +62,7 @@ const RecipeItem = () => {
         </div>
       </div>
       
-      <h3 className="text-2xl font-semibold mb-4 text-orange-600">Ingredientes</h3>
+      <h3 className="text-2xl font-semibold mb-4">Ingredientes</h3>
       <ul className="list-disc list-inside mb-8 text-gray-800">
         {recipe.ingredients.map((ingredient, index) => (
           <li key={index}>
@@ -71,7 +71,7 @@ const RecipeItem = () => {
         ))}
       </ul>
       
-      <h3 className="text-2xl font-semibold mb-4 text-orange-600">Instrucciones</h3>
+      <h3 className="text-2xl font-semibold mb-4">Instrucciones</h3>
       <ol className="list-decimal list-inside text-gray-800">
         {recipe.instructions.map((instruction, index) => (
           <li key={index} className="mb-2">{instruction}</li>
@@ -81,7 +81,7 @@ const RecipeItem = () => {
       <div className="mt-8 flex justify-center gap-4">
         {user.username === recipe.author ? (
           <Fragment>
-            <button onClick={handleEdit} className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300">Editar Receta</button>
+            <button onClick={handleEdit} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Editar Receta</button>
             <DeleteButton recipeId={recipe.id} onDelete={handleDelete} />
           </Fragment>
         ) : (

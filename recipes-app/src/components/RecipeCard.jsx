@@ -10,15 +10,11 @@ const RecipeCard = ({ recipe, canDelete }) => {
   // Función para determinar el color de la dificultad
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
-      case 'Muy Fácil':
-        return 'text-green-500';
-      case 'Fácil':
+        case 'Fácil':
         return 'text-green-500';
       case 'Moderado':
         return 'text-yellow-500';
       case 'Difícil':
-        return 'text-red-600';
-      case 'Muy Difícil':
         return 'text-red-600';
       default:
         return 'text-gray-500';
