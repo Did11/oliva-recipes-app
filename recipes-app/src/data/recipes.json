@@ -1,0 +1,302 @@
+[
+    {
+        "title": "Pizza",
+        "difficulty": "Moderado",
+        "category": "Pizzas",
+        "preparationTime": "60",
+        "cookingTime": "20",
+        "ingredients": [
+            { "name": "harina de trigo", "quantity": "500", "unit": "gramo" },
+            { "name": "agua", "quantity": "300", "unit": "centímetro cúbico" },
+            { "name": "levadura fresca", "quantity": "25", "unit": "gramo" },
+            { "name": "salsa de tomate", "quantity": "200", "unit": "gramo" },
+            { "name": "queso mozzarella", "quantity": "300", "unit": "gramo" }
+        ],
+        "instructions": [
+            "Mezclar la harina con la levadura y el agua hasta formar una masa.",
+            "Dejar reposar la masa durante 1 hora.",
+            "Extender la masa en una superficie enharinada.",
+            "Agregar la salsa de tomate sobre la masa.",
+            "Cubrir con el queso mozzarella.",
+            "Hornear a 220°C durante 20 minutos."
+        ],
+        "id": "1",
+        "image": "pizza.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Hamburguesa completa",
+        "difficulty": "Fácil",
+        "category": "Sándwiches",
+        "preparationTime": "30",
+        "cookingTime": "15",
+        "ingredients": [
+            { "name": "carne molida", "quantity": "500", "unit": "gramo" },
+            { "name": "pan para hamburguesa", "quantity": "4", "unit": "unidad" },
+            { "name": "queso cheddar", "quantity": "4", "unit": "unidad" },
+            { "name": "lechuga", "quantity": "4", "unit": "hoja" },
+            { "name": "tomate", "quantity": "2", "unit": "unidad" }
+        ],
+        "instructions": [
+            "Formar las hamburguesas con la carne molida.",
+            "Cocinar las hamburguesas en una sartén caliente.",
+            "Tostar los panes de hamburguesa.",
+            "Colocar las hamburguesas cocidas en los panes.",
+            "Agregar queso cheddar, lechuga y tomate.",
+            "Servir las hamburguesas calientes."
+        ],
+        "id": "2",
+        "image": "hamburguesa.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Sushi",
+        "difficulty": "Difícil",
+        "category": "Comida Japonesa",
+        "preparationTime": "90",
+        "cookingTime": "10",
+        "ingredients": [
+            { "name": "arroz para sushi", "quantity": "300", "unit": "gramo" },
+            { "name": "algas nori", "quantity": "5", "unit": "unidad" },
+            { "name": "salmón fresco", "quantity": "200", "unit": "gramo" },
+            { "name": "aguacate", "quantity": "1", "unit": "unidad" },
+            { "name": "salsa de soja", "quantity": "50", "unit": "centímetro cúbico" }
+        ],
+        "instructions": [
+            "Cocinar el arroz para sushi según las instrucciones del paquete.",
+            "Colocar el arroz sobre las algas nori.",
+            "Agregar tiras de salmón y aguacate.",
+            "Enrollar las algas nori con el arroz y el relleno.",
+            "Cortar los rollos de sushi en porciones.",
+            "Servir con salsa de soja."
+        ],
+        "id": "3",
+        "image": "sushi.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Empanadas",
+        "difficulty": "Moderado",
+        "category": "Comida Argentina",
+        "preparationTime": "60",
+        "cookingTime": "30",
+        "ingredients": [
+            { "name": "carne de res", "quantity": "500", "unit": "gramo" },
+            { "name": "cebolla", "quantity": "2", "unit": "unidad" },
+            { "name": "pimientos rojos", "quantity": "1", "unit": "unidad" },
+            { "name": "aceitunas", "quantity": "50", "unit": "gramo" },
+            { "name": "discos de empanada", "quantity": "12", "unit": "unidad" }
+        ],
+        "instructions": [
+            "Cocinar la carne de res en una sartén.",
+            "Agregar la cebolla y los pimientos picados.",
+            "Añadir las aceitunas picadas a la mezcla.",
+            "Rellenar los discos de empanada con la mezcla.",
+            "Cerrar las empanadas y sellarlas.",
+            "Hornear a 180°C durante 30 minutos."
+        ],
+        "id": "4",
+        "image": "empanadas.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Ensalada César",
+        "difficulty": "Fácil",
+        "category": "Ensaladas",
+        "preparationTime": "20",
+        "cookingTime": "0",
+        "ingredients": [
+            { "name": "lechuga romana", "quantity": "1", "unit": "unidad" },
+            { "name": "pollo cocido", "quantity": "200", "unit": "gramo" },
+            { "name": "queso parmesano", "quantity": "50", "unit": "gramo" },
+            { "name": "crutones", "quantity": "100", "unit": "gramo" },
+            { "name": "aderezo César", "quantity": "50", "unit": "centímetro cúbico" }
+        ],
+        "instructions": [
+            "Lavar y cortar la lechuga romana.",
+            "Cortar el pollo cocido en tiras.",
+            "Mezclar la lechuga con el pollo y el queso parmesano.",
+            "Añadir los crutones a la ensalada.",
+            "Aliñar con el aderezo César.",
+            "Servir inmediatamente."
+        ],
+        "id": "5",
+        "image": "ensalada.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Lasagna",
+        "difficulty": "Moderado",
+        "category": "Pasta",
+        "preparationTime": "30",
+        "cookingTime": "15",
+        "ingredients": [
+            { "name": "pasta fettuccine", "quantity": "400", "unit": "gramo" },
+            { "name": "mantequilla", "quantity": "100", "unit": "gramo" },
+            { "name": "crema de leche", "quantity": "200", "unit": "centímetro cúbico" },
+            { "name": "queso parmesano", "quantity": "100", "unit": "gramo" },
+            { "name": "ajo", "quantity": "2", "unit": "diente" }
+        ],
+        "instructions": [
+            "Cocinar la pasta fettuccine en agua con sal.",
+            "Derretir la mantequilla en una sartén.",
+            "Agregar el ajo picado a la mantequilla derretida.",
+            "Añadir la crema de leche y mezclar bien.",
+            "Incorporar el queso parmesano rallado.",
+            "Mezclar la salsa con la pasta cocida y servir."
+        ],
+        "id": "6",
+        "image": "pasta.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Sopa de Fideos",
+        "difficulty": "Fácil",
+        "category": "Sopas",
+        "preparationTime": "15",
+        "cookingTime": "30",
+        "ingredients": [
+            { "name": "tomates", "quantity": "5", "unit": "unidad" },
+            { "name": "caldo de verduras", "quantity": "500", "unit": "centímetro cúbico" },
+            { "name": "cebolla", "quantity": "1", "unit": "unidad" },
+            { "name": "ajo", "quantity": "2", "unit": "diente" },
+            { "name": "aceite de oliva", "quantity": "2", "unit": "cucharada" }
+        ],
+        "instructions": [
+            "Saltear la cebolla y el ajo en aceite de oliva.",
+            "Agregar los tomates picados y cocinar hasta que se ablanden.",
+            "Añadir el caldo de verduras y llevar a ebullición.",
+            "Reducir el fuego y cocinar a fuego lento durante 20 minutos.",
+            "Licuar la sopa hasta obtener una mezcla homogénea.",
+            "Servir caliente con un poco de albahaca fresca."
+        ],
+        "id": "7",
+        "image": "sopa.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Tarta de Manzana",
+        "difficulty": "Moderado",
+        "category": "Postres",
+        "preparationTime": "40",
+        "cookingTime": "30",
+        "ingredients": [
+            { "name": "manzanas", "quantity": "4", "unit": "unidad" },
+            { "name": "harina", "quantity": "250", "unit": "gramo" },
+            { "name": "mantequilla", "quantity": "125", "unit": "gramo" },
+            { "name": "azúcar", "quantity": "100", "unit": "gramo" },
+            { "name": "huevos", "quantity": "2", "unit": "unidad" }
+        ],
+        "instructions": [
+            "Preparar la masa con harina, mantequilla y huevos.",
+            "Estirar la masa y colocarla en un molde para tarta.",
+            "Pelar y cortar las manzanas en rodajas finas.",
+            "Colocar las manzanas sobre la masa y espolvorear con azúcar.",
+            "Hornear a 180°C durante 30 minutos.",
+            "Dejar enfriar antes de servir."
+        ],
+        "id": "8",
+        "image": "postre.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Pan Casero",
+        "difficulty": "Moderado",
+        "category": "Panadería",
+        "preparationTime": "120",
+        "cookingTime": "30",
+        "ingredients": [
+            { "name": "harina", "quantity": "500", "unit": "gramo" },
+            { "name": "agua", "quantity": "300", "unit": "centímetro cúbico" },
+            { "name": "levadura fresca", "quantity": "25", "unit": "gramo" },
+            { "name": "sal", "quantity": "10", "unit": "gramo" },
+            { "name": "aceite de oliva", "quantity": "2", "unit": "cucharada" }
+        ],
+        "instructions": [
+            "Mezclar la harina con la levadura y el agua.",
+            "Añadir sal y aceite de oliva a la masa.",
+            "Amasar la masa hasta que esté suave y elástica.",
+            "Dejar reposar la masa durante 1 hora para que leve.",
+            "Formar panes con la masa y dejarlos reposar 30 minutos más.",
+            "Hornear a 200°C durante 30 minutos."
+        ],
+        "id": "9",
+        "image": "pan.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Bife con Lomo especial",
+        "difficulty": "Moderado",
+        "category": "Carnes",
+        "preparationTime": "30",
+        "cookingTime": "120",
+        "ingredients": [
+            { "name": "costillas de res", "quantity": "2", "unit": "kilo" },
+            { "name": "chorizos", "quantity": "4", "unit": "unidad" },
+            { "name": "morcillas", "quantity": "2", "unit": "unidad" },
+            { "name": "sal gruesa", "quantity": "30", "unit": "gramo" },
+            { "name": "limones", "quantity": "2", "unit": "unidad" }
+        ],
+        "instructions": [
+            "Preparar la parrilla y encender el fuego.",
+            "Colocar las costillas de res sobre la parrilla.",
+            "Agregar sal gruesa a las costillas.",
+            "Cocinar las costillas a fuego lento durante 2 horas.",
+            "Añadir los chorizos y morcillas en los últimos 30 minutos.",
+            "Servir el asado con rodajas de limón."
+        ],
+        "id": "10",
+        "image": "carnes.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Ensalada Vegana",
+        "difficulty": "Moderado",
+        "category": "Vegana",
+        "preparationTime": "30",
+        "cookingTime": "20",
+        "ingredients": [
+            { "name": "garbanzos cocidos", "quantity": "400", "unit": "gramo" },
+            { "name": "pan rallado", "quantity": "50", "unit": "gramo" },
+            { "name": "cebolla", "quantity": "1", "unit": "unidad" },
+            { "name": "ajo", "quantity": "2", "unit": "diente" },
+            { "name": "aceite de oliva", "quantity": "2", "unit": "cucharada" }
+        ],
+        "instructions": [
+            "Triturar los garbanzos cocidos hasta formar un puré.",
+            "Añadir el pan rallado, la cebolla picada y el ajo.",
+            "Formar hamburguesas con la mezcla.",
+            "Cocinar las hamburguesas en una sartén con aceite de oliva.",
+            "Tostar los panes para hamburguesa.",
+            "Servir las hamburguesas con los condimentos que prefieras."
+        ],
+        "id": "11",
+        "image": "vegana.jpg",
+        "author": "Didier"
+    },
+    {
+        "title": "Pan Sin Gluten",
+        "difficulty": "Difícil",
+        "category": "Sin Gluten",
+        "preparationTime": "90",
+        "cookingTime": "30",
+        "ingredients": [
+            { "name": "harina de arroz", "quantity": "500", "unit": "gramo" },
+            { "name": "agua", "quantity": "300", "unit": "centímetro cúbico" },
+            { "name": "levadura seca", "quantity": "10", "unit": "gramo" },
+            { "name": "sal", "quantity": "10", "unit": "gramo" },
+            { "name": "aceite de oliva", "quantity": "2", "unit": "cucharada" }
+        ],
+        "instructions": [
+            "Mezclar la harina de arroz con la levadura y el agua.",
+            "Añadir sal y aceite de oliva a la mezcla.",
+            "Amasar la masa hasta que esté suave.",
+            "Dejar reposar la masa durante 1 hora para que leve.",
+            "Formar panes con la masa y dejarlos reposar 30 minutos más.",
+            "Hornear a 180°C durante 30 minutos."
+        ],
+        "id": "12",
+        "image": "glutenfree.jpg",
+        "author": "Didier"
+    }
+]

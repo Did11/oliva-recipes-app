@@ -26,7 +26,7 @@ const Navbar = ({ categories }) => {
       <ul className="list-none flex justify-center items-center m-0 p-0 gap-8">
         <li>
           <Link to="/">
-            <img src="/images/logo-transparent.png" alt="Home" className="h-16 w-16" />
+            <img src="/images/logo.png" alt="Home" className="h-16 w-16" />
           </Link>
         </li>
         <li>
