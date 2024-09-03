@@ -38,7 +38,10 @@ const ToggleFollowButton = ({ recipeId }) => {
   };
 
   return (
-    <button onClick={handleFollow}>
+    <button
+      onClick={handleFollow}
+      className={`px-4 py-2 text-white rounded-md transition-colors duration-200 focus:outline-none ${isFollowed ? 'bg-orange-600 hover:bg-orange-700' : 'bg-orange-500 hover:bg-orange-600'}`}
+    >
       {isFollowed ? 'Dejar de seguir' : 'Seguir'}
     </button>
   );

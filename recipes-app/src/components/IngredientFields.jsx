@@ -40,12 +40,12 @@ const IngredientFields = ({ initialIngredients, onIngredientsChange }) => {
             placeholder="Cantidad"
             value={ingredient.quantity}
             onChange={(e) => handleIngredientChange(index, 'quantity', e.target.value)}
-            className="w-24 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
+            className="w-24 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
           />
           <select
             value={ingredient.unit}
             onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
-            className="w-24 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
+            className="w-24 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
           >
             {['unidad', 'gramo', 'kilo', 'centímetro cúbico', 'litro', 'taza', 'cucharada'].map((option) => (
               <option key={option} value={option}>
@@ -58,7 +58,7 @@ const IngredientFields = ({ initialIngredients, onIngredientsChange }) => {
             placeholder="Nombre del ingrediente"
             value={ingredient.name}
             onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
-            className="flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
+            className="flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
           />
           <button
             type="button"
@@ -72,7 +72,7 @@ const IngredientFields = ({ initialIngredients, onIngredientsChange }) => {
       <button
         type="button"
         onClick={addIngredientField}
-        className="w-full mt-2 text-sm text-indigo-600 bg-indigo-100 rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="w-full mt-2 text-sm text-orange-600 bg-orange-200 rounded-md hover:bg-orange-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
       >
         Añadir Ingrediente
       </button>

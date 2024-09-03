@@ -87,7 +87,7 @@ const RecipeForm = () => {
           type="text"
           value={recipe.title}
           onChange={(e) => setRecipe({ ...recipe, title: e.target.value })}
-          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
+          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
         />
       </div>
 
@@ -97,7 +97,7 @@ const RecipeForm = () => {
           type="number"
           value={recipe.preparationTime}
           onChange={(e) => setRecipe({ ...recipe, preparationTime: e.target.value })}
-          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
+          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
         />
       </div>
 
@@ -107,7 +107,7 @@ const RecipeForm = () => {
           type="number"
           value={recipe.cookingTime}
           onChange={(e) => setRecipe({ ...recipe, cookingTime: e.target.value })}
-          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
+          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
         />
       </div>
 
@@ -126,7 +126,7 @@ const RecipeForm = () => {
         <select
           value={recipe.difficulty}
           onChange={(e) => setRecipe({ ...recipe, difficulty: e.target.value })}
-          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
+          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
         >
           {['Fácil', 'Moderado', 'Difícil'].map((level) => (
             <option key={level} value={level}>
@@ -141,7 +141,7 @@ const RecipeForm = () => {
         <select
           value={recipe.category}
           onChange={(e) => setRecipe({ ...recipe, category: e.target.value })}
-          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
+          className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
         >
           <option value="">Seleccionar categoría</option>
           {categories.map((category) => (
@@ -154,7 +154,7 @@ const RecipeForm = () => {
 
       <button
         type="submit"
-        className="w-full bg-indigo-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="w-full bg-orange-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
       >
         {id ? 'Actualizar Receta' : 'Guardar Receta'}
       </button>

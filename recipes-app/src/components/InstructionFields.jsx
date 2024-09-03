@@ -36,7 +36,7 @@ const InstructionFields = ({ initialInstructions, onInstructionsChange }) => {
             placeholder={`Paso ${index + 1}`}
             value={instruction}
             onChange={(e) => handleInstructionChange(index, e.target.value)}
-            className="flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 sm:text-sm"
+            className="flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
           />
           <button
             type="button"
@@ -50,7 +50,7 @@ const InstructionFields = ({ initialInstructions, onInstructionsChange }) => {
       <button
         type="button"
         onClick={addInstructionField}
-        className="w-full mt-2 text-sm text-indigo-600 bg-indigo-100 rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="w-full mt-2 text-sm text-orange-600 bg-orange-200 rounded-md hover:bg-orange-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
       >
         Añadir Instrucción
       </button>
