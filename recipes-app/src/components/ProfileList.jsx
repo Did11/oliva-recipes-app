@@ -1,8 +1,25 @@
 import PropTypes from 'prop-types';
-import ToggleFollowButton from './ToggleFollowButton';
+import DeleteButton from './DeleteButton';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 
-const ProfileList = ({ recipes, type }) => {
+const ProfileList = ({ recipes, type, onRecipeDeleted, onUnfollowRecipe }) => {
+  const { state } = useContext(AuthContext);
+  const { user } = state;
+
+  const handleToggleFollow = (recipeId) => {
+    const followRecipesByUser = JSON.parse(localStorage.getItem('followRecipesByUser')) || {};
+    const followedRecipes = followRecipesByUser[user.username] || [];
+
+    if (followedRecipes.includes(recipeId)) {
+      const updatedFollowedRecipes = followedRecipes.filter(id => id !== recipeId);
+      followRecipesByUser[user.username] = updatedFollowedRecipes;
+      localStorage.setItem('followRecipesByUser', JSON.stringify(followRecipesByUser));
+      if (onUnfollowRecipe) onUnfollowRecipe(recipeId); // Llamamos a onUnfollowRecipe si existe
+    }
+  };
+
   return (
     <div>
       {recipes.length > 0 ? (
@@ -25,7 +42,18 @@ const ProfileList = ({ recipes, type }) => {
                 Ver Detalles
               </Link>
               {type === 'followed' && (
-                <ToggleFollowButton recipeId={recipe.id} />
+                <button
+                  onClick={() => handleToggleFollow(recipe.id)}
+                  className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-200 focus:outline-none"
+                >
+                  Dejar de Seguir
+                </button>
+              )}
+              {type === 'created' && (
+                <DeleteButton
+                  recipeId={recipe.id}
+                  onDelete={() => onRecipeDeleted(recipe.id)}
+                />
               )}
             </div>
           </div>
@@ -40,6 +68,8 @@ const ProfileList = ({ recipes, type }) => {
 ProfileList.propTypes = {
   recipes: PropTypes.array.isRequired,
   type: PropTypes.oneOf(['created', 'followed']).isRequired,
+  onRecipeDeleted: PropTypes.func,
+  onUnfollowRecipe: PropTypes.func, // Definimos que es requerido si es necesario
 };
 
 export default ProfileList;

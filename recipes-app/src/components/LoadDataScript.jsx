@@ -7,15 +7,22 @@ const LoadDataScript = () => {
     const handleClick = (event) => {
       event.preventDefault(); // Evitar comportamiento por defecto del enlace
 
-      // Cargar el JSON desde el archivo en src/data/
-      fetch('/src/data/recipes.json')
+      // Cargar y almacenar los usuarios
+      fetch('/src/data/users.json')
         .then(response => response.json())
-        .then(data => {
-          // Almacenar los datos en localStorage bajo la clave correcta
-          localStorage.setItem('recipes', JSON.stringify(data));
+        .then(usersData => {
+          localStorage.setItem('users', JSON.stringify(usersData));
+          console.log('Usuarios guardados en localStorage bajo la clave "users"');
+          
+          // Luego de cargar los usuarios, cargar y almacenar las recetas
+          return fetch('/src/data/recipes.json');
+        })
+        .then(response => response.json())
+        .then(recipesData => {
+          localStorage.setItem('recipes', JSON.stringify(recipesData));
           console.log('Recetas guardadas en localStorage bajo la clave "recipes"');
         })
-        .catch(error => console.error('Error al cargar el JSON:', error));
+        .catch(error => console.error('Error al cargar los datos JSON:', error));
     };
 
     // Añadir el evento de clic al enlace

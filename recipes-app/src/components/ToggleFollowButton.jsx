@@ -6,34 +6,26 @@ const ToggleFollowButton = ({ recipeId }) => {
   const [isFollowed, setIsFollowed] = useState(false);
   const { state } = useContext(AuthContext);
   const { user } = state;
-  const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
-  const recipe = recipes.find((recipe) => recipe.id === recipeId);
 
   useEffect(() => {
-    if (recipe && user.username !== recipe.author) {
-      setIsFollowed(checkIfFollowed(recipeId));
-    }
-  }, [recipeId, recipe, user.username]);
-
-  const checkIfFollowed = (id) => {
-    const followedRecipes = JSON.parse(localStorage.getItem('followedRecipes')) || [];
-    return followedRecipes.some(followedId => followedId === id);
-  };
+    const followRecipesByUser = JSON.parse(localStorage.getItem('followRecipesByUser')) || {};
+    const followedRecipes = followRecipesByUser[user.username] || [];
+    setIsFollowed(followedRecipes.includes(recipeId));
+  }, [recipeId, user.username]);
 
   const handleFollow = () => {
-    if (recipe && user.username === recipe.author) {
-      alert("No puedes seguir tus propias recetas.");
-      return;
-    }
+    const followRecipesByUser = JSON.parse(localStorage.getItem('followRecipesByUser')) || {};
+    const followedRecipes = followRecipesByUser[user.username] || [];
 
-    const followedRecipes = JSON.parse(localStorage.getItem('followedRecipes')) || [];
     if (isFollowed) {
-      const updatedRecipes = followedRecipes.filter(followedId => followedId !== recipeId);
-      localStorage.setItem('followedRecipes', JSON.stringify(updatedRecipes));
+      const updatedRecipes = followedRecipes.filter(id => id !== recipeId);
+      followRecipesByUser[user.username] = updatedRecipes;
     } else {
       followedRecipes.push(recipeId);
-      localStorage.setItem('followedRecipes', JSON.stringify(followedRecipes));
+      followRecipesByUser[user.username] = followedRecipes;
     }
+
+    localStorage.setItem('followRecipesByUser', JSON.stringify(followRecipesByUser));
     setIsFollowed(!isFollowed);
   };
 

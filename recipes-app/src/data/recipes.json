@@ -2,7 +2,7 @@
     {
         "title": "Pizza",
         "difficulty": "Moderado",
-        "category": "Pizzas",
+        "category": "Pizza",
         "preparationTime": "60",
         "cookingTime": "20",
         "ingredients": [
@@ -27,7 +27,7 @@
     {
         "title": "Hamburguesa completa",
         "difficulty": "Fácil",
-        "category": "Sándwiches",
+        "category": "Hamburguesa",
         "preparationTime": "30",
         "cookingTime": "15",
         "ingredients": [
@@ -50,9 +50,9 @@
         "author": "Didier"
     },
     {
-        "title": "Sushi",
+        "title": "Sushi New York",
         "difficulty": "Difícil",
-        "category": "Comida Japonesa",
+        "category": "Sushi",
         "preparationTime": "90",
         "cookingTime": "10",
         "ingredients": [
@@ -75,9 +75,9 @@
         "author": "Didier"
     },
     {
-        "title": "Empanadas",
+        "title": "Empanadas de carne",
         "difficulty": "Moderado",
-        "category": "Comida Argentina",
+        "category": "Empanadas",
         "preparationTime": "60",
         "cookingTime": "30",
         "ingredients": [
@@ -102,7 +102,7 @@
     {
         "title": "Ensalada César",
         "difficulty": "Fácil",
-        "category": "Ensaladas",
+        "category": "Ensalada",
         "preparationTime": "20",
         "cookingTime": "0",
         "ingredients": [
@@ -147,12 +147,12 @@
         ],
         "id": "6",
         "image": "pasta.jpg",
-        "author": "Didier"
+        "author": "Laura"
     },
     {
         "title": "Sopa de Fideos",
         "difficulty": "Fácil",
-        "category": "Sopas",
+        "category": "Sopa",
         "preparationTime": "15",
         "cookingTime": "30",
         "ingredients": [
@@ -172,12 +172,12 @@
         ],
         "id": "7",
         "image": "sopa.jpg",
-        "author": "Didier"
+        "author": "Laura"
     },
     {
         "title": "Tarta de Manzana",
         "difficulty": "Moderado",
-        "category": "Postres",
+        "category": "Postre",
         "preparationTime": "40",
         "cookingTime": "30",
         "ingredients": [
@@ -202,7 +202,7 @@
     {
         "title": "Pan Casero",
         "difficulty": "Moderado",
-        "category": "Panadería",
+        "category": "Pan",
         "preparationTime": "120",
         "cookingTime": "30",
         "ingredients": [
@@ -222,7 +222,7 @@
         ],
         "id": "9",
         "image": "pan.jpg",
-        "author": "Didier"
+        "author": "Laura"
     },
     {
         "title": "Bife con Lomo especial",
@@ -275,9 +275,9 @@
         "author": "Didier"
     },
     {
-        "title": "Pan Sin Gluten",
+        "title": "Pan sin gluten",
         "difficulty": "Difícil",
-        "category": "Sin Gluten",
+        "category": "Sin gluten",
         "preparationTime": "90",
         "cookingTime": "30",
         "ingredients": [

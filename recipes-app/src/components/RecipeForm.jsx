@@ -128,6 +128,9 @@ const RecipeForm = () => {
           onChange={(e) => setRecipe({ ...recipe, difficulty: e.target.value })}
           className="mt-1 block w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
         >
+          <option value="" disabled>
+            Seleccione la dificultad
+          </option>
           {['Fácil', 'Moderado', 'Difícil'].map((level) => (
             <option key={level} value={level}>
               {level}
@@ -135,6 +138,7 @@ const RecipeForm = () => {
           ))}
         </select>
       </div>
+
 
       <div className="space-y-1">
         <label className="block text-sm font-medium text-gray-700">Categoría:</label>
