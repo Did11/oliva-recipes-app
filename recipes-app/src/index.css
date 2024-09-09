@@ -60,15 +60,11 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #0073e6; /* Botones con fondo azul claro */
   color: #fff; /* Texto en blanco para los botones */
   cursor: pointer;
   transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #005bb5; /* Borde azul oscuro al pasar el ratón */
-}
 
 button:focus,
 button:focus-visible {

@@ -8,13 +8,21 @@ import categories from './data/categories.json';
 
 const App = () => {
   return (
+    // Proveer contexto de autenticación a la aplicación
     <AuthProvider>
+      {/* Proveer contexto de recetas a la aplicación */}
       <RecipeProvider> 
+        {/* Configurar el enrutamiento principal de la aplicación */}
         <Router>
-          <Navbar categories={categories} /> {/* Pasar las categorías aquí */}
+          {/* Renderizar la barra de navegación y pasar categorías como props */}
+          <Navbar categories={categories} /> 
+          
+          {/* Contenido principal de la aplicación */}
           <main className="flex-1">
             <AppRoutes />
           </main>
+
+          {/* Renderizar el pie de página */}
           <Footer className="bg-gray-800 text-white p-5 text-center w-full mt-auto" />
         </Router>
       </RecipeProvider>

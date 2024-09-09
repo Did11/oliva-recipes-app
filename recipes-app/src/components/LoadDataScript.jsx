@@ -21,6 +21,14 @@ const LoadDataScript = () => {
         .then(recipesData => {
           localStorage.setItem('recipes', JSON.stringify(recipesData));
           console.log('Recetas guardadas en localStorage bajo la clave "recipes"');
+          
+          // Luego de cargar las recetas, cargar y almacenar los follows
+          return fetch('/src/data/follows.json');
+        })
+        .then(response => response.json())
+        .then(followsData => {
+          localStorage.setItem('followRecipesByUser', JSON.stringify(followsData));
+          console.log('Follows guardados en localStorage bajo la clave "followRecipesByUser"');
         })
         .catch(error => console.error('Error al cargar los datos JSON:', error));
     };

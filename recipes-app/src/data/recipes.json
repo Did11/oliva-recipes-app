@@ -22,7 +22,7 @@
         ],
         "id": "1",
         "image": "pizza.jpg",
-        "author": "Didier"
+        "author": "Diego"
     },
     {
         "title": "Hamburguesa completa",
@@ -72,7 +72,7 @@
         ],
         "id": "3",
         "image": "sushi.jpg",
-        "author": "Didier"
+        "author": "Laura"
     },
     {
         "title": "Empanadas de carne",
@@ -147,7 +147,7 @@
         ],
         "id": "6",
         "image": "pasta.jpg",
-        "author": "Laura"
+        "author": "Diego"
     },
     {
         "title": "Sopa de Fideos",
@@ -172,7 +172,7 @@
         ],
         "id": "7",
         "image": "sopa.jpg",
-        "author": "Laura"
+        "author": "Diego"
     },
     {
         "title": "Tarta de Manzana",
@@ -272,7 +272,7 @@
         ],
         "id": "11",
         "image": "vegana.jpg",
-        "author": "Didier"
+        "author": "Laura"
     },
     {
         "title": "Pan sin gluten",
