@@ -8,12 +8,16 @@ const ToggleFollowButton = ({ recipeId }) => {
   const { user } = state;
 
   useEffect(() => {
+    if (!user) return; // Si el usuario no está logueado, no ejecutar el efecto
+
     const followRecipesByUser = JSON.parse(localStorage.getItem('followRecipesByUser')) || {};
     const followedRecipes = followRecipesByUser[user.username] || [];
     setIsFollowed(followedRecipes.includes(recipeId));
-  }, [recipeId, user.username]);
+  }, [recipeId, user]);
 
   const handleFollow = () => {
+    if (!user) return; // No permitir la acción si no hay usuario logueado
+
     const followRecipesByUser = JSON.parse(localStorage.getItem('followRecipesByUser')) || {};
     const followedRecipes = followRecipesByUser[user.username] || [];
 
@@ -28,6 +32,8 @@ const ToggleFollowButton = ({ recipeId }) => {
     localStorage.setItem('followRecipesByUser', JSON.stringify(followRecipesByUser));
     setIsFollowed(!isFollowed);
   };
+
+  if (!user) return null; // No mostrar el botón si no hay usuario logueado
 
   return (
     <button

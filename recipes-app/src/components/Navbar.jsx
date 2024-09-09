@@ -22,7 +22,7 @@ const Navbar = ({ categories }) => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-yellow-600 via-orange-500 to-red-500 p-3 shadow-lg">
+    <nav className="bg-white p-3 shadow-lg mb-6">
       <ul className="list-none flex justify-center items-center m-0 p-0 gap-8">
         <li>
           <Link to="/">
@@ -30,13 +30,15 @@ const Navbar = ({ categories }) => {
           </Link>
         </li>
         <li>
-          <Link to="/recipes" className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200">Recetas</Link>
+          <Link to="/recipes" className="text-orange-600 no-underline text-lg hover:text-orange-400 transition-colors duration-200">
+            Recetas
+          </Link>
         </li>
         {isAuthenticated && (
           <li>
             <button 
               onClick={handleAddRecipeClick} 
-              className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200 bg-transparent border-none cursor-pointer focus:outline-none"
+              className="text-orange-600 no-underline text-lg hover:text-orange-400 transition-colors duration-200 bg-transparent border-none cursor-pointer focus:outline-none"
             >
               Agregar Receta
             </button>
@@ -48,22 +50,29 @@ const Navbar = ({ categories }) => {
         {!isAuthenticated && (
           <>
             <li>
-              <Link to="/login" className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200">Login</Link>
+              <Link to="/login" className="text-orange-600 no-underline text-lg hover:text-orange-400 transition-colors duration-200">
+                Login
+              </Link>
             </li>
             <li>
-              <Link to="/register" className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200">Register</Link>
+              <Link to="/register" className="text-orange-600 no-underline text-lg hover:text-orange-400 transition-colors duration-200">
+                Register
+              </Link>
             </li>
           </>
         )}
         {isAuthenticated && (
           <>
             <li>
-              <Link to="/profile" className="text-white no-underline text-lg hover:text-yellow-200 transition-colors duration-200">Mi perfil</Link>
+              <Link to="/profile" className="text-orange-600 no-underline text-lg hover:text-orange-400 transition-colors duration-200">
+                Mi perfil
+              </Link>
             </li>
             <li>
               <button 
-                className="bg-red-600 text-white border-none px-3 py-1 cursor-pointer hover:bg-red-500 rounded transition-colors duration-200" 
-                onClick={handleLogout}>
+                className="bg-orange-600 text-white border-none px-3 py-1 cursor-pointer hover:bg-orange-500 rounded transition-colors duration-200" 
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </li>
@@ -73,6 +82,7 @@ const Navbar = ({ categories }) => {
     </nav>
   );
 };
+
 
 // Agregar PropTypes para validar `categories`
 Navbar.propTypes = {

@@ -5,13 +5,13 @@ import ToggleFollowButton from './ToggleFollowButton';
 import DeleteButton from './DeleteButton';
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root'); // Asegúrate de que esto coincide con tu div principal en index.html
+Modal.setAppElement('#root');
 
 const RecipeItem = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { state } = useContext(AuthContext);
-  const { user } = state;
+  const { user } = state; // Obtener el usuario logueado del contexto
   const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
   const recipe = recipes.find((recipe) => recipe.id === id);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -43,7 +43,7 @@ const RecipeItem = () => {
   };
 
   return (
-    <div className="bg-gray-100 p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+    <div className="bg-gray-100 p-8 rounded-lg shadow-lg max-w-4xl mx-auto my-10">
       <div className="flex mb-8">
         <div className="w-1/2 pr-4">
           <img 
@@ -80,7 +80,8 @@ const RecipeItem = () => {
       </ol>
       
       <div className="mt-8 flex justify-center gap-4">
-        {user.username === recipe.author ? (
+        {/* Solo el usuario logueado que es el autor de la receta puede editar o eliminar */}
+        {user && user.username === recipe.author ? (
           <Fragment>
             <button onClick={handleEdit} className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-200 focus:outline-none">Editar Receta</button>
             <DeleteButton recipeId={recipe.id} onDelete={handleDelete} />

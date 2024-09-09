@@ -26,19 +26,26 @@ const AuthForm = ({ onSubmit, submitLabel, isRegister }) => {
   ];
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {fields.map(({ name, label, type }) => (
-        <InputField
-          key={name}
-          label={label}
-          name={name}
-          type={type}
-          register={register}
-          error={errors[name]}
-        />
-      ))}
-      <button type="submit">{submitLabel}</button>
-    </form>
+    <div className="max-w-md mx-auto bg-orange-50 p-8 rounded-lg shadow-md"> {/* Fondo claro y esquinas más redondeadas */}
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {fields.map(({ name, label, type }) => (
+          <InputField
+            key={name}
+            label={label}
+            name={name}
+            type={type}
+            register={register}
+            error={errors[name]}
+          />
+        ))}
+        <button
+          type="submit"
+          className="w-full bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors duration-200 focus:outline-none"
+        >
+          {submitLabel}
+        </button>
+      </form>
+    </div>
   );
 };
 

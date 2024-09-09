@@ -30,14 +30,17 @@ Esta es una aplicación de recetas de cocina desarrollada en React. La aplicaci�
 
 2. Navega hacia el directorio:
     ```bash
-    cd oliva-recipes-app/
+    cd oliva-recipes-app/recipes-app
     ```
 
 3. Instala las dependencias:
-   ```npm install
+   ```bash
+   npm install
     ```
 
 4. Ejecuta la aplicacion:
     ```bash
     npm run dev
     ```
+
+5. Abre tu navegador y visita http://localhost:5173/ para ver la aplicación en funcionamiento.
