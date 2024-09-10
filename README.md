@@ -62,24 +62,24 @@ Esta es una aplicación de recetas de cocina desarrollada en React. La aplicaci�
 
 ## Cómo usar
 
-### Cargar Datos de Prueba:
+#### Cargar Datos de Prueba:
 - Para cargar datos preconfigurados, haz clic en el botón **"Cargar Datos"** en la página de inicio, lo que facilita la evaluación de las funcionalidades de la aplicación.
 
-### Iniciar Sesión o Registrarse:
+#### Iniciar Sesión o Registrarse:
 - Regístrate proporcionando un nombre de usuario y contraseña.
 - Al registrarte, iniciarás sesión automáticamente
 - Puedes cerrar sesión y volver a iniciarla cuantas veces quieras.
 
-### Agregar una Receta:
+#### Agregar una Receta:
 - Después de iniciar sesión, puedes agregar nuevas recetas llenando los campos necesarios, como título, tiempo de preparación, ingredientes e instrucciones.
 
-### Editar o Eliminar Recetas:
+#### Editar o Eliminar Recetas:
 - Solo el autor de la receta puede editar o eliminar una receta.
 
-### Seguir Recetas:
+#### Seguir Recetas:
 - Los usuarios pueden seguir recetas de otros usuarios para tener un acceso rápido a sus recetas favoritas.
 
-### Administración desde el Perfil:
+#### Administración desde el Perfil:
 - Los usuarios puede administrar las recetas que ha creado o sigue desde su perfil.
 
 ## Créditos
