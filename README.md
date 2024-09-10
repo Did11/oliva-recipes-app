@@ -9,7 +9,8 @@
 3. [Tecnologías](#tecnologías)
 4. [Instalación](#instalación)
 5. [Cómo usar](#cómo-usar)
-6. [Licencia](#licencia)
+6. [Créditos](#créditos)
+7. [Licencia](#licencia)
 
 ## Descripción
 
