@@ -9,12 +9,6 @@
 3. [Tecnologías](#tecnologías)
 4. [Instalación](#instalación)
 5. [Cómo usar](#cómo-usar)
-   - [Cargar Datos de Prueba](#cargar-datos-de-prueba)
-   - [Iniciar Sesión o Registrarse](#iniciar-sesión-o-registrarse)
-   - [Agregar una Receta](#agregar-una-receta)
-   - [Editar o Eliminar Recetas](#editar-o-eliminar-recetas)
-   - [Seguir Recetas](#seguir-recetas)
-   - [Administración desde el Perfil](#administración-desde-el-perfil)
 6. [Licencia](#licencia)
 
 ## Descripción
@@ -93,4 +87,4 @@ Este proyecto fue desarrollado por **Didier Oliva** como parte de un trabajo aca
 
 ## Licencia
 
-Este proyecto está licenciado bajo la [Licencia MIT](./LICENSE). Consulta el archivo LICENSE para más detalles.
+Este proyecto está licenciado bajo la **Licencia MIT**. Consulta el archivo [LICENSE](./LICENSE) para más detalles.
