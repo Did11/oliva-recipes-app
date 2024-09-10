@@ -5,29 +5,34 @@ import ToggleFollowButton from './ToggleFollowButton';
 import DeleteButton from './DeleteButton';
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root'); // Configura el elemento raíz para accesibilidad en Modal
 
 const RecipeItem = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Obtiene el id de la receta desde los parámetros de la URL
   const navigate = useNavigate();
   const { state } = useContext(AuthContext);
-  const { user } = state; // Obtener el usuario logueado del contexto
+  const { user } = state; // Obtiene el usuario logueado desde el contexto de autenticación
+
+  // Obtiene todas las recetas guardadas en localStorage
   const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+  // Encuentra la receta correspondiente al id pasado por parámetros
   const recipe = recipes.find((recipe) => recipe.id === id);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  
+  const [modalIsOpen, setModalIsOpen] = useState(false); // Estado para controlar la visibilidad del modal
 
   if (!recipe) {
-    return <p>No se encontró la receta.</p>;
+    return <p>No se encontró la receta.</p>; // Muestra un mensaje si no se encuentra la receta
   }
 
   const handleEdit = () => {
-    navigate(`/edit-recipe/${recipe.id}`);
+    navigate(`/edit-recipe/${recipe.id}`); // Redirige a la página de edición de la receta
   };
 
   const handleDelete = () => {
     navigate('/recipes'); // Redirige al usuario a la lista de recetas después de eliminar
   };
 
+  // Función para pluralizar las unidades de ingredientes
   const pluralizeUnit = (quantity, unit) => {
     if (quantity === '1') return unit;
     const unitMap = {
@@ -50,7 +55,7 @@ const RecipeItem = () => {
             src={`/images/${recipe.image}`} 
             alt={recipe.title} 
             className="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer" 
-            onClick={() => setModalIsOpen(true)} 
+            onClick={() => setModalIsOpen(true)} // Abre el modal cuando se hace clic en la imagen
           />
         </div>
         <div className="w-1/2 pl-4 flex flex-col justify-center">
@@ -87,13 +92,14 @@ const RecipeItem = () => {
             <DeleteButton recipeId={recipe.id} onDelete={handleDelete} />
           </Fragment>
         ) : (
-          <ToggleFollowButton recipeId={recipe.id} />
+          <ToggleFollowButton recipeId={recipe.id} /> // Muestra el botón de seguir/dejar de seguir para otros usuarios
         )}
       </div>
 
+      {/* Modal para mostrar la imagen en tamaño completo */}
       <Modal 
         isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
+        onRequestClose={() => setModalIsOpen(false)} // Cierra el modal
         style={{
           content: {
             top: '50%',
@@ -107,7 +113,7 @@ const RecipeItem = () => {
             background: 'none',
           },
           overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.75)'
+            backgroundColor: 'rgba(0, 0, 0, 0.75)' // Fondo oscuro del modal
           }
         }}
       >
@@ -115,7 +121,7 @@ const RecipeItem = () => {
           src={`/images/${recipe.image}`} 
           alt={recipe.title} 
           className="w-full h-full object-cover rounded-lg shadow-md" 
-          onClick={() => setModalIsOpen(false)}
+          onClick={() => setModalIsOpen(false)} // Cierra el modal al hacer clic en la imagen
         />
       </Modal>
     </div>

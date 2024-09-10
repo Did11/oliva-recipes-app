@@ -3,7 +3,7 @@ import Register from '../components/Register';
 const RegisterPage = () => {
   return (
     <div>
-      <Register />
+      <Register /> {/* Componente para registrar un nuevo usuario */}
     </div>
   );
 };

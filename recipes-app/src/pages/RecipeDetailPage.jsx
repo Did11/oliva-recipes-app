@@ -3,7 +3,7 @@ import RecipeItem from '../components/RecipeItem'; // Asegúrate de importar Rec
 const RecipeDetailPage = () => {
   return (
     <div>
-      <RecipeItem /> {/* Renderiza el componente RecipeItem */}
+      <RecipeItem /> {/* Componente que muestra los detalles de una receta */}
     </div>
   );
 };

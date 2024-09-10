@@ -4,13 +4,13 @@ import DeleteButton from './DeleteButton';
 
 const RecipeCard = ({ recipe, canDelete }) => {
   const handleDelete = () => {
-    window.location.reload(); // Recargar la página para reflejar los cambios
+    window.location.reload(); // Recargar la página después de eliminar la receta
   };
 
-  // Función para determinar el color de la dificultad
+  // Función para determinar el color de la dificultad según el nivel
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
-        case 'Fácil':
+      case 'Fácil':
         return 'text-green-500';
       case 'Moderado':
         return 'text-yellow-500';
@@ -23,6 +23,7 @@ const RecipeCard = ({ recipe, canDelete }) => {
 
   return (
     <div className="relative">
+      {/* Enlace a los detalles de la receta */}
       <Link to={`/recipes/${recipe.id}`} className="block bg-white shadow-lg rounded-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-2xl">
         <img
           src={`/images/${recipe.image}`}
@@ -36,6 +37,7 @@ const RecipeCard = ({ recipe, canDelete }) => {
           <p className={getDifficultyColor(recipe.difficulty)}>Dificultad: {recipe.difficulty}</p>
         </div>
       </Link>
+      {/* Mostrar botón de eliminación si `canDelete` es verdadero */}
       {canDelete && (
         <div className="absolute top-4 right-4">
           <DeleteButton recipeId={recipe.id} onDelete={handleDelete} />
@@ -47,14 +49,14 @@ const RecipeCard = ({ recipe, canDelete }) => {
 
 RecipeCard.propTypes = {
   recipe: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string,
-    author: PropTypes.string,
-    category: PropTypes.string.isRequired, // Aseguramos que la categoría es obligatoria
-    difficulty: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired, // ID de la receta
+    title: PropTypes.string.isRequired, // Título de la receta
+    image: PropTypes.string, // Imagen de la receta (opcional)
+    author: PropTypes.string, // Autor de la receta (opcional)
+    category: PropTypes.string.isRequired, // Categoría es obligatoria
+    difficulty: PropTypes.string.isRequired, // Dificultad es obligatoria
   }).isRequired,
-  canDelete: PropTypes.bool,
+  canDelete: PropTypes.bool, // Si el botón de eliminación es opcional
 };
 
 export default RecipeCard;

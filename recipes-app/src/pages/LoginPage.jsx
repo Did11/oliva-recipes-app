@@ -3,7 +3,7 @@ import Login from '../components/Login';
 const LoginPage = () => {
   return (
     <div>
-      <Login />
+      <Login /> {/* Componente que gestiona el inicio de sesión */}
     </div>
   );
 };

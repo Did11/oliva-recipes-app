@@ -17,7 +17,7 @@ const HomePage = () => {
           Para facilitarte el acceso, te ofrecemos un modo de prueba con datos preconfigurados. A continuación, se ofrece un enlace para cargar estos datos. Además, puedes acceder con los siguientes usuarios:
         </p>
 
-        <div className="bg-orange-100 border border-orange-300 rounded-2xl p-6 text-center max-w-2xl mx-auto shadow-lg">
+        <div className="bg-orange-100 border border-orange-300 rounded-2xl p-6 text-center max-w-2xl mx-auto shadow-lg mb-6">
           <p className="text-xl text-gray-700 font-semibold mb-4">
             ¡Importante! Para comenzar, asegúrate de cargar los datos iniciales.
           </p>

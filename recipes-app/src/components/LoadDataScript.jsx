@@ -1,3 +1,5 @@
+// Script para cargar los datos de muestra
+
 import { useEffect } from 'react';
 
 const LoadDataScript = () => {

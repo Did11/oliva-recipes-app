@@ -6,21 +6,23 @@ import IngredientFields from './IngredientFields';
 import InstructionFields from './InstructionFields';
 
 const RecipeForm = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Obtener el id de la receta si está en modo edición
   const navigate = useNavigate();
-  const { state } = useContext(AuthContext);
+  const { state } = useContext(AuthContext); // Obtener el estado del contexto de autenticación
   const { user } = state;
 
+  // Estado para almacenar la receta actual
   const [recipe, setRecipe] = useState({
     title: '',
     difficulty: '',
     category: '',
     preparationTime: '',
     cookingTime: '',
-    ingredients: [{ name: '', quantity: '', unit: 'unidad' }],
-    instructions: [''],
+    ingredients: [{ name: '', quantity: '', unit: 'unidad' }], // Ingredientes iniciales
+    instructions: [''], // Instrucciones iniciales
   });
 
+  // Si hay un id, cargamos la receta para editar
   useEffect(() => {
     if (id) {
       const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
@@ -33,14 +35,17 @@ const RecipeForm = () => {
     }
   }, [id]);
 
+  // Función para actualizar los ingredientes
   const handleIngredientsChange = (updatedIngredients) => {
     setRecipe((prevRecipe) => ({ ...prevRecipe, ingredients: updatedIngredients }));
   };
 
+  // Función para actualizar las instrucciones
   const handleInstructionsChange = (updatedInstructions) => {
     setRecipe((prevRecipe) => ({ ...prevRecipe, instructions: updatedInstructions }));
   };
 
+  // Validar la receta antes de guardar
   const validateRecipe = () => {
     const { title, difficulty, category, preparationTime, cookingTime, ingredients, instructions } = recipe;
     if (!title.trim() || !difficulty || !category || !preparationTime || !cookingTime) return false;
@@ -52,6 +57,7 @@ const RecipeForm = () => {
     return !invalidIngredient && !invalidInstruction;
   };
 
+  // Manejar el envío del formulario
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!validateRecipe()) {
@@ -62,9 +68,9 @@ const RecipeForm = () => {
     const selectedCategory = categories.find((cat) => cat.name === recipe.category);
     const newRecipe = {
       ...recipe,
-      id: id || Date.now().toString(),
-      image: selectedCategory ? selectedCategory.defaultImage : 'default.jpg',
-      author: user.username,
+      id: id || Date.now().toString(), // Asignar ID único si es una nueva receta
+      image: selectedCategory ? selectedCategory.defaultImage : 'default.jpg', // Asignar imagen por defecto
+      author: user.username, // Asignar el nombre del autor
     };
 
     const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
@@ -76,11 +82,12 @@ const RecipeForm = () => {
     }
 
     localStorage.setItem('recipes', JSON.stringify(savedRecipes));
-    navigate(`/recipes/${newRecipe.id}`);
+    navigate(`/recipes/${newRecipe.id}`); // Redirigir a los detalles de la receta
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md space-y-4">
+    <form onSubmit={handleSubmit} className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md space-y-4 mb-6">
+      {/* Título de la receta */}
       <div className="space-y-1">
         <label className="block text-sm font-medium text-gray-700">Título:</label>
         <input
@@ -91,6 +98,7 @@ const RecipeForm = () => {
         />
       </div>
 
+      {/* Tiempo de preparación */}
       <div className="space-y-1">
         <label className="block text-sm font-medium text-gray-700">Tiempo de preparación (minutos):</label>
         <input
@@ -101,6 +109,7 @@ const RecipeForm = () => {
         />
       </div>
 
+      {/* Tiempo de cocción */}
       <div className="space-y-1">
         <label className="block text-sm font-medium text-gray-700">Tiempo de cocción (minutos):</label>
         <input
@@ -111,16 +120,19 @@ const RecipeForm = () => {
         />
       </div>
 
+      {/* Campos de ingredientes */}
       <IngredientFields
         initialIngredients={recipe.ingredients}
         onIngredientsChange={handleIngredientsChange}
       />
 
+      {/* Campos de instrucciones */}
       <InstructionFields
         initialInstructions={recipe.instructions}
         onInstructionsChange={handleInstructionsChange}
       />
 
+      {/* Selección de dificultad */}
       <div className="space-y-1">
         <label className="block text-sm font-medium text-gray-700">Dificultad:</label>
         <select
@@ -139,7 +151,7 @@ const RecipeForm = () => {
         </select>
       </div>
 
-
+      {/* Selección de categoría */}
       <div className="space-y-1">
         <label className="block text-sm font-medium text-gray-700">Categoría:</label>
         <select
@@ -156,6 +168,7 @@ const RecipeForm = () => {
         </select>
       </div>
 
+      {/* Botón para guardar la receta */}
       <button
         type="submit"
         className="w-full bg-orange-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"

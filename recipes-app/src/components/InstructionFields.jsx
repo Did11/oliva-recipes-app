@@ -2,25 +2,30 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const InstructionFields = ({ initialInstructions, onInstructionsChange }) => {
+  // Estado local para manejar las instrucciones
   const [instructions, setInstructions] = useState(initialInstructions);
 
   useEffect(() => {
-    setInstructions(initialInstructions); // Sincroniza el estado interno con las nuevas props
+    // Sincroniza el estado con las instrucciones iniciales cuando cambian
+    setInstructions(initialInstructions);
   }, [initialInstructions]);
 
+  // Manejar el cambio en una instrucción
   const handleInstructionChange = (index, value) => {
     const updatedInstructions = [...instructions];
     updatedInstructions[index] = value;
     setInstructions(updatedInstructions);
-    onInstructionsChange(updatedInstructions);
+    onInstructionsChange(updatedInstructions); // Informar cambios al componente padre
   };
 
+  // Añadir un nuevo campo de instrucción vacío
   const addInstructionField = () => {
-    const updatedInstructions = [...instructions, ''];
+    const updatedInstructions = [...instructions, '']; // Nueva instrucción vacía
     setInstructions(updatedInstructions);
     onInstructionsChange(updatedInstructions);
   };
 
+  // Eliminar un campo de instrucción por su índice
   const removeInstructionField = (index) => {
     const updatedInstructions = instructions.filter((_, i) => i !== index);
     setInstructions(updatedInstructions);
@@ -30,14 +35,17 @@ const InstructionFields = ({ initialInstructions, onInstructionsChange }) => {
   return (
     <div className="space-y-2">
       <label className="block text-sm font-medium text-gray-700">Instrucciones:</label>
+      {/* Renderizar los campos de instrucciones */}
       {instructions.map((instruction, index) => (
         <div key={index} className="flex items-center space-x-2">
+          {/* Campo de texto para cada paso de la instrucción */}
           <textarea
             placeholder={`Paso ${index + 1}`}
             value={instruction}
             onChange={(e) => handleInstructionChange(index, e.target.value)}
             className="flex-1 px-3 py-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-gray-50 sm:text-sm"
           />
+          {/* Botón para eliminar una instrucción */}
           <button
             type="button"
             onClick={() => removeInstructionField(index)}
@@ -47,6 +55,7 @@ const InstructionFields = ({ initialInstructions, onInstructionsChange }) => {
           </button>
         </div>
       ))}
+      {/* Botón para añadir una nueva instrucción */}
       <button
         type="button"
         onClick={addInstructionField}
@@ -59,11 +68,14 @@ const InstructionFields = ({ initialInstructions, onInstructionsChange }) => {
 };
 
 InstructionFields.propTypes = {
+  // Instrucciones iniciales pasadas como prop
   initialInstructions: PropTypes.arrayOf(PropTypes.string),
+  // Función para manejar los cambios en las instrucciones
   onInstructionsChange: PropTypes.func.isRequired,
 };
 
 InstructionFields.defaultProps = {
+  // Instrucción vacía por defecto
   initialInstructions: [''],
 };
 

@@ -5,6 +5,7 @@ import UserInfo from './UserInfo';
 const Profile = ({ username, createdRecipes, followedRecipes, onDeleteRecipe, onUnfollowRecipe }) => {
   return (
     <div className="max-w-4xl mx-auto p-8">
+      {/* Sección del perfil del usuario con imagen y nombre */}
       <div className="flex items-center space-x-6 mb-8">
         <img 
           src="/images/chef.png"
@@ -17,6 +18,7 @@ const Profile = ({ username, createdRecipes, followedRecipes, onDeleteRecipe, on
         </div>
       </div>
       
+      {/* Lista de recetas creadas por el usuario */}
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Recetas que has creado</h2>
         <ProfileList 
@@ -26,6 +28,7 @@ const Profile = ({ username, createdRecipes, followedRecipes, onDeleteRecipe, on
         />
       </section>
       
+      {/* Lista de recetas que sigue el usuario */}
       <section>
         <h2 className="text-2xl font-semibold mb-4">Recetas que sigues</h2>
         <ProfileList 
@@ -39,11 +42,11 @@ const Profile = ({ username, createdRecipes, followedRecipes, onDeleteRecipe, on
 };
 
 Profile.propTypes = {
-  username: PropTypes.string.isRequired,
-  createdRecipes: PropTypes.array.isRequired,
-  followedRecipes: PropTypes.array.isRequired,
-  onDeleteRecipe: PropTypes.func.isRequired,
-  onUnfollowRecipe: PropTypes.func.isRequired,  // Definimos que es requerido
+  username: PropTypes.string.isRequired, // El nombre del usuario es obligatorio
+  createdRecipes: PropTypes.array.isRequired, // La lista de recetas creadas es obligatoria
+  followedRecipes: PropTypes.array.isRequired, // La lista de recetas seguidas es obligatoria
+  onDeleteRecipe: PropTypes.func.isRequired, // Función para eliminar una receta
+  onUnfollowRecipe: PropTypes.func.isRequired,  // Función para dejar de seguir una receta
 };
 
 export default Profile;

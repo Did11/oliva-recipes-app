@@ -6,7 +6,7 @@ import SearchBar from './SearchBar';
 
 const Navbar = ({ categories }) => {
   const { state, dispatch } = useContext(AuthContext);
-  const { isAuthenticated } = state;
+  const { isAuthenticated, user } = state; // Extraer el nombre de usuario del estado
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -47,8 +47,9 @@ const Navbar = ({ categories }) => {
                 </button>
               </li>
               <li>
+                {/* Mostrar dinámicamente "Perfil de [username]" */}
                 <Link to="/profile" className="text-orange-600 no-underline text-xl hover:text-orange-400 transition-colors duration-200">
-                  Mi perfil
+                  Perfil de {user?.username || 'Usuario'} {/* Mostrar el username o "Usuario" por defecto */}
                 </Link>
               </li>
             </>
@@ -70,7 +71,7 @@ const Navbar = ({ categories }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/register" className="text-orange-600 no-underline text-xl hover:text-orange-400 transition-colors duration-200">
+                <Link to="/register" className="text-orange-600 no-underline text-xl hover:text-orange-400 transition-colors duración-200">
                   Registrarse
                 </Link>
               </li>

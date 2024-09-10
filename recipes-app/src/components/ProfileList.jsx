@@ -8,15 +8,17 @@ const ProfileList = ({ recipes, type, onRecipeDeleted, onUnfollowRecipe }) => {
   const { state } = useContext(AuthContext);
   const { user } = state;
 
+  // Manejar la lógica para dejar de seguir una receta
   const handleToggleFollow = (recipeId) => {
     const followRecipesByUser = JSON.parse(localStorage.getItem('followRecipesByUser')) || {};
     const followedRecipes = followRecipesByUser[user.username] || [];
 
     if (followedRecipes.includes(recipeId)) {
+      // Actualizamos la lista de recetas seguidas
       const updatedFollowedRecipes = followedRecipes.filter(id => id !== recipeId);
       followRecipesByUser[user.username] = updatedFollowedRecipes;
       localStorage.setItem('followRecipesByUser', JSON.stringify(followRecipesByUser));
-      if (onUnfollowRecipe) onUnfollowRecipe(recipeId); // Llamamos a onUnfollowRecipe si existe
+      if (onUnfollowRecipe) onUnfollowRecipe(recipeId); // Llamamos a la función para dejar de seguir
     }
   };
 
@@ -42,6 +44,7 @@ const ProfileList = ({ recipes, type, onRecipeDeleted, onUnfollowRecipe }) => {
                 Ver Detalles
               </Link>
               {type === 'followed' && (
+                // Botón para dejar de seguir una receta si el tipo es "followed"
                 <button
                   onClick={() => handleToggleFollow(recipe.id)}
                   className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-200 focus:outline-none"
@@ -50,6 +53,7 @@ const ProfileList = ({ recipes, type, onRecipeDeleted, onUnfollowRecipe }) => {
                 </button>
               )}
               {type === 'created' && (
+                // Botón para eliminar receta si el tipo es "created"
                 <DeleteButton
                   recipeId={recipe.id}
                   onDelete={() => onRecipeDeleted(recipe.id)}
@@ -59,6 +63,7 @@ const ProfileList = ({ recipes, type, onRecipeDeleted, onUnfollowRecipe }) => {
           </div>
         ))
       ) : (
+        // Mensaje cuando no hay recetas
         <p>No hay recetas disponibles.</p>
       )}
     </div>
@@ -66,10 +71,10 @@ const ProfileList = ({ recipes, type, onRecipeDeleted, onUnfollowRecipe }) => {
 };
 
 ProfileList.propTypes = {
-  recipes: PropTypes.array.isRequired,
-  type: PropTypes.oneOf(['created', 'followed']).isRequired,
-  onRecipeDeleted: PropTypes.func,
-  onUnfollowRecipe: PropTypes.func, // Definimos que es requerido si es necesario
+  recipes: PropTypes.array.isRequired, // La lista de recetas es obligatoria
+  type: PropTypes.oneOf(['created', 'followed']).isRequired, // El tipo debe ser "created" o "followed"
+  onRecipeDeleted: PropTypes.func, // Función para eliminar una receta (opcional)
+  onUnfollowRecipe: PropTypes.func, // Función para dejar de seguir una receta (opcional)
 };
 
 export default ProfileList;
